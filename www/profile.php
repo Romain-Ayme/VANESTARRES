@@ -50,6 +50,14 @@ start_page('Compte');
             </table>
         </div>
     </div>
+    <br/>
+    <!--            Footer            -->
+    <div class="footer">
+        <footer>
+            foooooooooooooooooooooooooootter
+        </footer>
+    </div>
+    <!--            Footer end            -->
     <a href="" id="scrollUp" class="invisible"></a>
 
 <?php

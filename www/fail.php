@@ -34,6 +34,14 @@ start_page('fail');
     <h2>Fail Page</h2>
     <p>Mauvais Email et/ou Mot de passe </p>
 </div>
+<br/>
+<!--            Footer            -->
+<div class="footer">
+    <footer>
+        foooooooooooooooooooooooooootter
+    </footer>
+</div>
+<!--            Footer end            -->
 <a href="" id="scrollUp" class="invisible"></a>
 <!-- Body end -->
 <?php

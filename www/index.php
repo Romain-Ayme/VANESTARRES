@@ -35,7 +35,9 @@ start_page('Vanestarre');
 
         <div class="tag">
             <section>
-                tag
+                <label> Recherche :
+                    <input type="search">
+                </label>
             </section>
         </div>
 
@@ -578,11 +580,9 @@ start_page('Vanestarre');
     <!--            Footer            -->
     <div class="footer">
         <footer>
-            footer
         </footer>
     </div>
     <!--            Footer end            -->
-    <br/>
     <a href="" id="scrollUp" class="invisible"></a>
 <!-- Body end -->
 

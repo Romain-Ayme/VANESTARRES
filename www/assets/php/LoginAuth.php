@@ -1,6 +1,5 @@
 <?php
 
-
 class UserService
 {
     protected $_email;    // using protected so they can be accessed

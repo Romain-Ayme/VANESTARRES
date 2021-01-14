@@ -5,15 +5,19 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 body {
-    background-color: #435165;
+    background-image: url(../Images/Background.jpg) ;
+    background-attachment: fixed;
 }
+
 .login {
     width: 400px;
     background-color: #ffffff;
     box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
     margin: 100px auto;
 }
+
 .login h1 {
     text-align: center;
     color: #5b6574;
@@ -21,12 +25,14 @@ body {
     padding: 20px 0 20px 0;
     border-bottom: 1px solid #dee0e4;
 }
+
 .login form {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding-top: 20px;
 }
+
 .login form label {
     display: flex;
     justify-content: center;
@@ -36,6 +42,7 @@ body {
     background-color: #3274d6;
     color: #ffffff;
 }
+
 .login form input[type="password"], .login form input[type="text"] {
     width: 310px;
     height: 50px;
@@ -43,6 +50,7 @@ body {
     margin-bottom: 20px;
     padding: 0 15px;
 }
+
 .login form input[type="submit"] {
     width: 100%;
     padding: 15px;
@@ -54,16 +62,19 @@ body {
     color: #ffffff;
     transition: background-color 0.2s;
 }
+
 .login form input[type="submit"]:hover {
     background-color: #2868c7;
     transition: background-color 0.2s;
 }
+
 .navtop {
     background-color: #2f3947;
     height: 60px;
     width: 100%;
     border: 0;
 }
+
 .navtop div {
     display: flex;
     margin: 0 auto;
@@ -72,13 +83,14 @@ body {
 }
 
 .logo {
-
+    height: 50px;
 }
 
 .navtop div h1, .navtop div a, .logo {
     display: inline-flex;
     align-items: center;
 }
+
 .navtop div h1 {
     flex: 1;
     font-size: 24px;
@@ -87,25 +99,31 @@ body {
     color: #eaebed;
     font-weight: normal;
 }
+
 .navtop div a {
     padding: 0 20px;
     text-decoration: none;
     color: #c1c4c8;
     font-weight: bold;
 }
+
 .navtop div a i {
     padding: 2px 8px 0 0;
 }
+
 .navtop div a:hover {
     color: #eaebed;
 }
+
 body.loggedin {
     background-color: #f3f4f7;
 }
+
 .content {
     width: 1000px;
     margin: 0 auto;
 }
+
 .content h2 {
     margin: 0;
     padding: 25px 0;
@@ -113,21 +131,92 @@ body.loggedin {
     border-bottom: 1px solid #e0e0e3;
     color: #4a536e;
 }
+
 .content > p, .content > div {
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
     margin: 25px 0;
     padding: 25px;
     background-color: #fff;
 }
+
 .content > p table td, .content > div table td {
     padding: 5px;
 }
+
 .content > p table td:first-child, .content > div table td:first-child {
     font-weight: bold;
     color: #4a536e;
     padding-right: 15px;
 }
+
 .content > div p {
     padding: 5px;
     margin: 0 0 10px 0;
+}
+
+.mp {
+    float: left;
+    width: 350px;
+    background: lightblue;
+    margin-left: 10px;
+}
+
+.tag {
+    float: right;
+    width: 250px;
+    background: burlywood;
+    overflow:visible;
+    margin-right: 10px;
+}
+
+.main {
+    margin-left: 380px;
+    margin-right: 280px;
+    background: khaki;
+}
+
+.footer {
+    background: cornflowerblue;
+}
+
+.page {
+    max-width: 1650px;
+    margin: auto;
+}
+
+#scrollUp{
+    border-radius:3px;
+    padding:10px;
+    font-size:15px;
+    text-align:center;
+    color:#fff;
+    background:rgba(44, 98, 197, 0.5);
+    position:fixed;
+    right:20px;
+    opacity:1;
+    z-index:99999;
+    transition:all ease-in 0.2s;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    text-decoration: none;
+}
+
+#scrollUp.invisible {
+    bottom:-35px;
+    opacity:0;
+    transition:all ease-in 1s;
+}
+
+#scrollUp.visible{
+    bottom:20px;
+    opacity: 1;
+}
+
+#scrollUp:before {
+    content: "\25b2";
+}
+
+#scrollUp:hover {
+    background:rgba(52, 113, 226, 1);
+    transition:all ease-in 0.2s;
 }

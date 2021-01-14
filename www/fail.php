@@ -7,31 +7,25 @@ if (isset($_SESSION['loggedin'])) {
     header('Location: sucess.php');
     exit;
 }
-?>
 
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>Fail Page</title>
-    <link rel="icon" type="image/png" href="assets/img/VANESTARRE.png" />
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/normalize.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-</head>
-<body class="loggedin">
+include_once 'assets/php/utils.inc.php';
+start_page('fail');
+?>
+<!-- Body -->
 <nav class="navtop">
     <div>
-        <h1>Vanestarre</h1>
+        <img class="logo" alt="" src="assets/Images/VANESTARRE.png"/>
+        <h1>anestarre</h1>
         <?php
         echo '<a href="index.php"><i class="fa fa-home"></i>Accueil</a>' . PHP_EOL;
-        if(isset($_SESSION['EMAIL'])) {
-            echo "\t\t" .'<a href="login.php"><i class="fas fa-sign-in-alt"></i>Se connecter</a>' . PHP_EOL;
-            echo "\t\t" .'<a href="registration.php"><i class="fa fa-user-plus"></i>S\'inscrire</a>' . PHP_EOL;
+        if(isset($_SESSION['loggedin'])) {
+            echo "\t\t" . '<a href="profile.php"><i class="fa fa-cog"></i>Paramètres</a>' . PHP_EOL;
+            echo "\t\t" . '<a href="home.php"><i class="fas fa-user-circle"></i>Mon Compte</a>' . PHP_EOL;
+            echo "\t\t" . '<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Se déconnecter</a>' . PHP_EOL;
         }
         else {
-            echo "\t\t" . '<a href="profile.php"><i class="fas fa-user-circle"></i>Mon Compte</a>' . PHP_EOL;
-            echo "\t\t" . '<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Se déconnecter</a>' . PHP_EOL;
+            echo "\t\t" .'<a href="login.php"><i class="fas fa-sign-in-alt"></i>Se connecter</a>' . PHP_EOL;
+            echo "\t\t" .'<a href="registration.php"><i class="fa fa-user-plus"></i>S\'inscrire</a>' . PHP_EOL;
         }
         ?>
     </div>
@@ -40,5 +34,8 @@ if (isset($_SESSION['loggedin'])) {
     <h2>Fail Page</h2>
     <p>Mauvais Email et/ou Mot de passe </p>
 </div>
-</body>
-</html>
+<a href="" id="scrollUp" class="invisible"></a>
+<!-- Body end -->
+<?php
+    end_page();
+?>

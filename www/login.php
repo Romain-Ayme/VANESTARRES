@@ -7,24 +7,15 @@ if (isset($_SESSION['loggedin'])) {
     header('Location: home.php');
     exit;
 }
+
+include_once 'assets/php/utils.inc.php';
+start_page('Connexion');
 ?>
-
-
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>Login</title>
-    <link rel="icon" type="image/png" href="assets/img/VANESTARRE.png" />
-    <link rel="stylesheet" href="assets/css/normalize.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+<!-- Body -->
 <div class="login">
     <h1>Login</h1>
-    <form action="authentication.php" method="post">
-    <label for="username">
+    <form action="authentification.php" method="post">
+        <label for="username">
             <i class="fas fa-user"></i>
         </label>
         <input type="text" name="email" placeholder="Email" id="username" required>
@@ -35,5 +26,8 @@ if (isset($_SESSION['loggedin'])) {
         <input type="submit" value="Login">
     </form>
 </div>
-</body>
-</html>
+<a href="" id="scrollUp" class="invisible"></a>
+<!-- Body end -->
+<?php
+end_page();
+?>

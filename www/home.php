@@ -66,6 +66,7 @@ start_page('Vanestarre');
         </footer>
     </div>
     <!--            Footer end            -->
+    <br/>
     <a href="" id="scrollUp" class="invisible"></a>
     <!-- Body end -->
 

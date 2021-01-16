@@ -12,6 +12,53 @@ body {
     background-attachment: fixed;
 }
 
+.navtop {
+    background-color: #2f3947;
+    height: 60px;
+    width: 100%;
+    border: 0;
+}
+
+.navtop div {
+    display: flex;
+    margin: auto;
+    width: 1100px;
+    height: 100%;
+}
+
+.logo {
+    height: 50px;
+}
+
+.navtop div h1, .navtop div a, .logo {
+    display: inline-flex;
+    align-items: center;
+}
+
+.navtop div h1 {
+    flex: 1;
+    font-size: 24px;
+    padding: 0;
+    margin: 0;
+    color: #eaebed;
+    font-weight: normal;
+}
+
+.navtop div a {
+    padding: 0 20px;
+    text-decoration: none;
+    color: #c1c4c8;
+    font-weight: bold;
+}
+
+.navtop div a i {
+    padding: 2px 8px 0 0;
+}
+
+.navtop div a:hover {
+    color: #eaebed;
+}
+
 .login {
     width: 400px;
     background-color: #ffffff;
@@ -70,137 +117,73 @@ body {
     transition: background-color 0.2s;
 }
 
-.navtop {
-    background-color: #2f3947;
-    height: 60px;
-    width: 100%;
-    border: 0;
-}
-
-.navtop div {
-    display: flex;
-    margin: 0 auto;
-    width: 1000px;
-    height: 100%;
-}
-
-.logo {
-    height: 50px;
-}
-
-.navtop div h1, .navtop div a, .logo {
-    display: inline-flex;
-    align-items: center;
-}
-
-.navtop div h1 {
-    flex: 1;
-    font-size: 24px;
-    padding: 0;
-    margin: 0;
-    color: #eaebed;
-    font-weight: normal;
-}
-
-.navtop div a {
-    padding: 0 20px;
-    text-decoration: none;
-    color: #c1c4c8;
-    font-weight: bold;
-}
-
-.navtop div a i {
-    padding: 2px 8px 0 0;
-}
-
-.navtop div a:hover {
-    color: #eaebed;
-}
-
 body.loggedin {
     background-color: #f3f4f7;
 }
 
-.content {
-    width: 1000px;
-    margin: 0 auto;
-}
-
-.content h2 {
-    margin: 0;
-    padding: 25px 0;
-    font-size: 22px;
-    border-bottom: 1px solid #e0e0e3;
-    color: #4a536e;
-}
-
-.content > p, .content > div {
-    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-    margin: 25px 0;
-    padding: 25px;
-    background-color: #2f3947;
-}
-
-.content > p table td, .content > div table td {
+.compte > p table td, .compte > table td {
     padding: 5px;
 }
 
-.content > p table td:first-child, .content > div table td:first-child {
+.compte > p table td:first-child, .compte > table td:first-child {
     font-weight: bold;
     background-color: #2f3947;
     padding-right: 15px;
 }
 
-.content > div p {
+.compte > p {
     padding: 5px;
     margin: 0 0 10px 0;
 }
 
+.page {
+    max-width: 1700px;
+    margin: auto;
+}
+
+.page section {
+    padding: 25px;
+    margin-bottom: 25px;
+    background-color: #2f3947;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.titre {
+    max-width: 1300px;
+    margin: 20px auto 50px;
+    padding: 25px;
+    font-size: 22px;
+    border-bottom: 1px solid #bfbfbf;
+    color: #4a536e;
+    text-align: center;
+}
+
 .mp {
     float: left;
-    width: 350px;
-    background-color: #2f3947;
-    margin-left: 10px;
+    width: 270px;
+    margin-left: 50px;
 }
 
-.mp section {
-    padding: 18px;
-}
-
-.tag {
+.tag_and_footer {
     float: right;
-    width: 250px;
-    background-color: #2f3947;
-    overflow:visible;
-    margin-right: 10px;
+    width: 320px;
 }
 
-.tag section {
-    padding: 18px;
+.recherche {
+
 }
 
-.main {
-    margin-left: 380px;
-    margin-right: 280px;
-    background-color: #2f3947;
-}
+.tendance {
 
-.main section {
-    padding: 18px;
 }
 
 .footer {
-    background-color: #2f3947;
-    bottom: 0;
+
 }
 
-.footer footer {
-    padding: 18px;
-}
-
-.page {
-    max-width: 1650px;
+.main {
     margin: auto;
+    max-width: 1000px;
 }
 
 #scrollUp{

@@ -34,39 +34,63 @@ start_page('Vanestarre');
         </div>
     </nav>
     <!--            Header end          -->
-    <br/>
+
+    <!--            Titre          -->
+    <h1 class="titre">Mon Compte</h1>
+    <!--            Titre end          -->
+
     <!--            Page            -->
     <div class="page">
 
-        <div class="tag">
-            <section>
-                tag
-            </section>
-        </div>
-
+        <!--            Mp            -->
         <div class="mp">
             <section>
                 mp
             </section>
         </div>
+        <!--            Mp end            -->
 
+        <!--            Tag and footer            -->
+        <div class="tag_and_footer">
+
+            <!--            Recherche            -->
+            <section class="recherche">
+                <label> Recherche :
+                    <input type="search">
+                </label>
+            </section>
+            <!--            Recherche end            -->
+
+            <!--            Tendance            -->
+            <section class="tendance">
+                Top 1
+            </section>
+            <!--            Tendance end            -->
+
+            <!--            Footer            -->
+            <section class="footer">
+                footer
+            </section>
+            <!--            Footer end            -->
+
+        </div>
+        <!--            Tag and footer end            -->
+
+        <!--            Main            -->
         <div class="main">
             <section>
-                main
+                &&&&&&&&&&&&&&&&&&&&&&&&
+                &&&&&&&&&&&&&&&&&&&&&&&&
+                &&&&&&&&&&&&&&&&&&&&&&&&
             </section>
         </div>
+        <!--            Main end            -->
 
     </div>
     <!--            Page end            -->
-    <br/>
-    <!--            Footer            -->
-    <div class="footer">
-        <footer>
-            footer
-        </footer>
-    </div>
-    <!--            Footer end            -->
+
     <a href="" id="scrollUp" class="invisible"></a>
+
     <!-- Body end -->
 
 <?php

@@ -10,6 +10,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 include_once 'assets/php/utils.inc.php';
 start_page('Vanestarre');
+
 ?>
 
     <!-- Body -->

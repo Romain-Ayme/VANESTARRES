@@ -126,27 +126,27 @@ function display_msg($dbLink, $tag)
 
         $dbRowNom = mysqli_fetch_assoc($dbResultNom);
 
-        echo '<section>';
-        echo '<div class = TitreMsg>', $dbRowNom['PSEUDO'], '</div>'; // Undefined index: PSEUDO
+        echo '<section>' , PHP_EOL;
+        echo '<div class = TitreMsg>', $dbRowNom['PSEUDO'], '</div>'  , PHP_EOL; // Undefined index: PSEUDO
 
-        echo '<div class = message>', $dbRow['MESSAGE'], '</div>';
+        echo '<div class = message>', $dbRow['MESSAGE'], '</div>'  , PHP_EOL;
 
-        echo '<div class = love>',
-        $dbRow['NB_LOVE'], '<img class="reaction" src="assets/img/love.png">',
-        '</div>',
+        echo '<div class = love>'  , PHP_EOL,
+        $dbRow['NB_LOVE'], '<img class="reaction" src="assets/img/love.png">' , PHP_EOL,
+        '</div>' , PHP_EOL ,
 
-        '<div class = cute>',
-        $dbRow['NB_CUTE'], '<img class="reaction" src="assets/img/cute.png">',
-        '</div>',
+        '<div class = cute>'  , PHP_EOL,
+        $dbRow['NB_CUTE'], '<img class="reaction" src="assets/img/cute.png">'  , PHP_EOL,
+        '</div>' , PHP_EOL,
 
-        '<div class = swag>',
-        $dbRow['NB_SWAG'], '<img class="reaction" src="assets/img/swag.png">',
-        '</div>',
+        '<div class = swag>' , PHP_EOL,
+        $dbRow['NB_SWAG'], '<img class="reaction" src="assets/img/swag.png">' , PHP_EOL,
+        '</div>' , PHP_EOL,
 
-        '<div class = style>',
-        $dbRow['NB_STYLE'], '<img class="reaction" src="assets/img/style.png">',
-        '</div>';
-        echo '</section>';
+        '<div class = style>' , PHP_EOL,
+        $dbRow['NB_STYLE'], '<img class="reaction" src="assets/img/style.png">' , PHP_EOL,
+        '</div>' , PHP_EOL;
+        echo '</section>' , PHP_EOL;
     }
 }
 

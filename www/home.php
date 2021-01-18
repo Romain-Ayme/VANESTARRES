@@ -11,6 +11,12 @@ if (!isset($_SESSION['loggedin'])) {
 include_once 'assets/php/utils.inc.php';
 start_page('Vanestarre');
 
+$dbLink = connect_db();
+$tag = NULL;
+
+if(isset($_GET['search']))
+    $tag = $_GET['search'];
+
 ?>
 
     <!-- Body -->
@@ -21,16 +27,7 @@ start_page('Vanestarre');
             <img class="logo" alt="" src="assets/Images/VANESTARRE.png"/>
             <h1>anestarre</h1>
             <?php
-            echo '<a href="index.php"><i class="fa fa-home"></i>Accueil</a>' . PHP_EOL;
-            if(isset($_SESSION['loggedin'])) {
-                echo "\t\t" . '<a href="profile.php"><i class="fa fa-cog"></i>Paramètres</a>' . PHP_EOL;
-                echo "\t\t" . '<a href="home.php"><i class="fas fa-user-circle"></i>Mon Compte</a>' . PHP_EOL;
-                echo "\t\t" . '<a href="logout.php"><i class="fas fa-sign-out-alt"></i>Se déconnecter</a>' . PHP_EOL;
-            }
-            else {
-                echo "\t\t" .'<a href="login.php"><i class="fas fa-sign-in-alt"></i>Se connecter</a>' . PHP_EOL;
-                echo "\t\t" .'<a href="registration.php"><i class="fa fa-user-plus"></i>S\'inscrire</a>' . PHP_EOL;
-            }
+                navbar();
             ?>
         </div>
     </nav>
@@ -56,9 +53,12 @@ start_page('Vanestarre');
 
             <!--            Recherche            -->
             <section class="recherche">
-                <label> Recherche :
-                    <input type="search">
-                </label>
+                <form action="home.php" method="get">
+                    <label> Recherche :
+                        <input type="search" name="search">
+                        <input type="submit" value="Rechercher">
+                    </label>
+                </form>
             </section>
             <!--            Recherche end            -->
 
@@ -79,11 +79,9 @@ start_page('Vanestarre');
 
         <!--            Main            -->
         <div class="main">
-            <section>
-                &&&&&&&&&&&&&&&&&&&&&&&&
-                &&&&&&&&&&&&&&&&&&&&&&&&
-                &&&&&&&&&&&&&&&&&&&&&&&&
-            </section>
+            <?php
+                display_msg($dbLink, $tag);
+            ?>
         </div>
         <!--            Main end            -->
 
@@ -95,5 +93,6 @@ start_page('Vanestarre');
     <!-- Body end -->
 
 <?php
+mysqli_close($dbLink);
 end_page();
 ?>

@@ -25,6 +25,15 @@
 	$repertoireDestination = 'assets/utilisateurs/', $_SESSION['user_id'] ,'/img_msg/,' $id_msg ,'/';
 	$nomDestination = nommage($_FILES["msg"]["type"]);
 
+	$nom = $repertoireDestination, $nomDestination;
+
+    	if (is_dir($nom)) {
+                      echo 'Le message existe déjà';  
+                      }
+    	else { 
+          mkdir($nom);
+          }
+
 	if (is_uploaded_file($_FILES["img"]["tmp_name"])) {
 		if (rename($_FILES["img"]["tmp_name"], $repertoireDestination.$nomDestination)) {
 			echo 'Fichier uploadé';
@@ -39,16 +48,8 @@
 
 	$query = 'INSERT INTO messages (IMG) VALUES (\'', $repertoireDestination, $nomDestination, '\')';
 	execute_query($dbLink, $query);
-	
-	$nom = $repertoireDestination, $nomDestination;
-
-    	if (is_dir($nom)) {
-                      echo 'Le message existe déjà';  
-                      }
-    else { 
-          mkdir($nom);
-          }
 ?>
+	
    header('Location: index.php');
 
 ?>

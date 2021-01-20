@@ -130,7 +130,7 @@ function display_msg($dbLink, $tag)
 
         echo '<div class = message>', $dbRow['MESSAGE'], '</div>'  , PHP_EOL;
 	
-	if (file_exists($dbRow['IMG']) {
+	if (file_exists($dbRow['IMG'])) {
 		echo '<div> <img scr"' ,$dbRow['IMG'], '"> </div>', PHP_EOL;
 	}
 	

@@ -13,10 +13,7 @@
         exit;
     }
 
-    $dbLink = mysqli_connect('mysql-romain-ayme.alwaysdata.net', '223609_php', 'zK7dQm4H3')
-        or die('Erreur de connexion au serveur : ' . mysqli_connect_error());
-    mysqli_select_db($dbLink , 'romain-ayme_vanestarre')
-        or die('Erreur dans la sélection de la base : ' . mysqli_error($dbLink));
+    $dbLink = connect_db();
 
     //    $msg = $_POST['msg'];
     //    $img = $_POST['img'];

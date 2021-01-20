@@ -190,6 +190,11 @@ body.loggedin {
     max-width: 1000px;
 }
 
+
+.inscription input {
+    color: black;
+}
+
 #scrollUp{
     border-radius:3px;
     padding:10px;

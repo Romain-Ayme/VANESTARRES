@@ -70,7 +70,7 @@ if(isset($_GET['search']))
 
             <!--            Footer            -->
             <section class="footer">
-                footer
+                <p> Copyright © 2021 Vanestarre. Tous droits réservés.</p>
             </section>
             <!--            Footer end            -->
 

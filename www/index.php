@@ -14,7 +14,7 @@ if(isset($_GET['search']))
 
 ?>
 
-<!-- Body -->
+    <!-- Body -->
 
     <!--            Header          -->
         <nav class="navtop">
@@ -38,7 +38,7 @@ if(isset($_GET['search']))
         <!--            Mp            -->
         <div class="mp">
             <section>
-                mp
+                En travaux... (profil ?)
             </section>
         </div>
         <!--            Mp end            -->
@@ -58,13 +58,13 @@ if(isset($_GET['search']))
 
             <!--            Tendance            -->
             <section class="tendance">
-                Top 1
+                En travaux...
             </section>
             <!--            Tendance end            -->
 
             <!--            Footer            -->
             <section class="footer">
-                footer
+                <p> Copyright © 2021 Vanestarre. Tous droits réservés.</p>
             </section>
             <!--            Footer end            -->
 
@@ -73,7 +73,7 @@ if(isset($_GET['search']))
         <!--            Main            -->
         <div class="main">
             <?php
-            display_msg($dbLink, $tag);
+                display_msg($dbLink, $tag);
             ?>
         </div>
         <!--            Main end            -->

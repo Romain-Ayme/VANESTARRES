@@ -57,10 +57,10 @@ function search_tag($tag, $dbLink) {
         $dbRow = mysqli_fetch_assoc($dbResult);
         $id_tag = $dbRow['ID_TAG'];
 
-        $query = 'SELECT MESSAGE, ID_USER, NB_LOVE, NB_CUTE, NB_STYLE, NB_SWAG
+        $query = 'SELECT MESSAGE, ID_USER, NB_LOVE, NB_CUTE, NB_STYLE, NB_SWAG, DATE_MESS
 						FROM messages
-						JOIN Messages_tags ON messages.ID_MESSAGE = Messages_tags.ID_MESSAGE
-						WHERE ID_TAG = \'' . $id_tag . '\'';
+						JOIN messages_tags ON messages.ID_MESSAGE = messages_tags.ID_MESSAGE
+						WHERE ID_TAG = \'' . $id_tag . '\' ORDER BY DATE_MESS DESC';
         $msg_list = execute_query($dbLink, $query);
     }
 
@@ -103,7 +103,7 @@ function manage_tag($msg, $dbLink, $id_msg) {
         }
 
         //Insertion de id_tag et id_msg dans messages_tags
-        $query = 'INSERT INTO Messages_tags (ID_TAG, ID_MESSAGE) VALUES                                                                     
+        $query = 'INSERT INTO messages_tags (ID_TAG, ID_MESSAGE) VALUES                                                                     
                                                                     (\'' . $id_tag . '\',
                                                                     \'' . $id_msg . '\')';
         execute_query($dbLink, $query);
@@ -115,7 +115,7 @@ function display_msg($dbLink, $tag)
     if ($tag != NULL) {
         $dbResult = search_tag($tag, $dbLink);
     } else {
-        $query = 'SELECT MESSAGE, ID_USER, NB_LOVE, NB_CUTE, NB_STYLE, NB_SWAG FROM messages';
+        $query = 'SELECT MESSAGE, ID_USER, NB_LOVE, NB_CUTE, NB_STYLE, NB_SWAG, DATE_MESS FROM messages ORDER BY DATE_MESS DESC';
         $dbResult = execute_query($dbLink, $query);
     }
 
@@ -127,25 +127,27 @@ function display_msg($dbLink, $tag)
         $dbRowNom = mysqli_fetch_assoc($dbResultNom);
 
         echo '<section>' , PHP_EOL;
-        echo '<div class = TitreMsg>', $dbRowNom['PSEUDO'], '</div>'  , PHP_EOL; // Undefined index: PSEUDO
+        echo '<div class = TitreMsg>', $dbRowNom['PSEUDO'], '</div>'  , PHP_EOL;
 
         echo '<div class = message>', $dbRow['MESSAGE'], '</div>'  , PHP_EOL;
 
         echo '<div class = love>'  , PHP_EOL,
-        $dbRow['NB_LOVE'], '<img class="reaction" src="assets/img/love.png">' , PHP_EOL,
+        $dbRow['NB_LOVE'], '<img class="reaction" src="assets/Images/love.png">' , PHP_EOL,
         '</div>' , PHP_EOL ,
 
         '<div class = cute>'  , PHP_EOL,
-        $dbRow['NB_CUTE'], '<img class="reaction" src="assets/img/cute.png">'  , PHP_EOL,
+        $dbRow['NB_CUTE'], '<img class="reaction" src="assets/Images/cute.png">'  , PHP_EOL,
         '</div>' , PHP_EOL,
 
         '<div class = swag>' , PHP_EOL,
-        $dbRow['NB_SWAG'], '<img class="reaction" src="assets/img/swag.png">' , PHP_EOL,
+        $dbRow['NB_SWAG'], '<img class="reaction" src="assets/Images/swag.png">' , PHP_EOL,
         '</div>' , PHP_EOL,
 
         '<div class = style>' , PHP_EOL,
-        $dbRow['NB_STYLE'], '<img class="reaction" src="assets/img/style.png">' , PHP_EOL,
+        $dbRow['NB_STYLE'], '<img class="reaction" src="assets/Images/style.png">' , PHP_EOL,
         '</div>' , PHP_EOL;
+
+        echo '<div class = date_mess>', $dbRow['DATE_MESS'], '</div>'  , PHP_EOL;
         echo '</section>' , PHP_EOL;
     }
 }

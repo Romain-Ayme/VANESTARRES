@@ -67,12 +67,11 @@ function search_tag($tag, $dbLink) {
     return $msg_list;
 }
 
-function insert_msg_db($uid, $msg, $img, $dbLink) {
+function insert_msg_db($uid, $msg, $dbLink) {
 
-    $query = 'INSERT INTO messages (ID_USER, MESSAGE, IMG) VALUES 
+    $query = 'INSERT INTO messages (ID_USER, MESSAGE) VALUES 
                                                                     (\'' . $uid . '\',
-                                                                    \'' . $msg . '\',
-                                                                    \'' . $img . '\')';
+                                                                    \'' . $msg . '\')';
     execute_query($dbLink, $query);
     return mysqli_insert_id($dbLink);
 }
@@ -162,4 +161,23 @@ function navbar()
         echo "\t\t" . '<a href="login.php"><i class="fas fa-sign-in-alt"></i>Se connecter</a>' . PHP_EOL;
         echo "\t\t" . '<a href="registration.php"><i class="fa fa-user-plus"></i>S\'inscrire</a>' . PHP_EOL;
     }
+}
+
+function nommage($type)
+{
+	if ($type == image/png) {
+		return 'image.png';
+	}
+
+	if ($type == image/gif) {
+		return 'image.gif';
+	}
+
+	if ($type == image/jpg) {
+		return 'image.jpg';
+	}
+
+	if ($type == image/jpeg) {
+		return 'image.jpeg';
+	}
 }

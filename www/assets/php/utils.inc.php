@@ -114,7 +114,7 @@ function display_msg($dbLink, $tag)
     if ($tag != NULL) {
         $dbResult = search_tag($tag, $dbLink);
     } else {
-        $query = 'SELECT MESSAGE, ID_USER, NB_LOVE, NB_CUTE, NB_STYLE, NB_SWAG FROM messages';
+        $query = 'SELECT MESSAGE, ID_USER, NB_LOVE, NB_CUTE, NB_STYLE, NB_SWAG, IMG FROM messages';
         $dbResult = execute_query($dbLink, $query);
     }
 
@@ -129,6 +129,11 @@ function display_msg($dbLink, $tag)
         echo '<div class = TitreMsg>', $dbRowNom['PSEUDO'], '</div>'  , PHP_EOL; // Undefined index: PSEUDO
 
         echo '<div class = message>', $dbRow['MESSAGE'], '</div>'  , PHP_EOL;
+	
+	if (file_exists($dbRow['IMG']) {
+		echo '<div> <img scr"' ,$dbRow['IMG'], '"> </div>', PHP_EOL;
+	}
+	
 
         echo '<div class = love>'  , PHP_EOL,
         $dbRow['NB_LOVE'], '<img class="reaction" src="assets/img/love.png">' , PHP_EOL,

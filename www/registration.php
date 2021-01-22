@@ -2,9 +2,9 @@
 // Création ou restauration de la session
 session_start();
 
-// Si déja connecté on fait une redirection vers : home.php
+// Si déja connecté on fait une redirection vers : index.php
 if (isset($_SESSION['loggedin'])) {
-    header('Location: home.php');
+    header('Location: index.php');
     exit;
 }
 
@@ -63,16 +63,14 @@ if(isset($_POST['pseudo']) && isset($_POST['e_mail']) && isset($_POST['pwd'])) {
                         <input type="password" name="pwd" required/><br/>
                     </label>
 
-                    <input type="submit" name="action" value="S'inscrire"/><br/>
+                    <input type="submit" name="action" value="S'inscrire"/>
                 </form>
             </section>
 
                 <?php
                     if(isset($_POST['pseudo']) && isset($_POST['e_mail']) && isset($_POST['pwd'])) {
                         $result = inscription($pseudo, $e_mail, $pwd, $dbLink);
-                            echo '<section>' . PHP_EOL;
-                            echo '<p>' . $result . '</p>' . PHP_EOL;
-                            echo '</section>' . PHP_EOL;
+                        display_error('action', $result);
                     }
                 ?>
         </div>

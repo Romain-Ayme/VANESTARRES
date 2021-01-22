@@ -9,6 +9,13 @@ start_page('Vanestarre');
 $dbLink = connect_db();
 $tag = NULL;
 
+$nb_max_msg = get_n_mes($dbLink);
+$page_number = 1;
+
+if(isset($_GET['page']))
+    $page_number = (int) $_GET['page'];
+
+
 if(isset($_GET['search']))
     $tag = $_GET['search'];
 
@@ -58,7 +65,10 @@ if(isset($_GET['search']))
 
             <!--            Tendance            -->
             <section class="tendance">
-                En travaux...
+                <p>Top des ß : </p>
+                <?php
+                    tendance($dbLink);
+                ?>
             </section>
             <!--            Tendance end            -->
 
@@ -73,8 +83,14 @@ if(isset($_GET['search']))
         <!--            Main            -->
         <div class="main">
             <?php
-                display_msg($dbLink, $tag);
+                $nb_ligne = display_msg($dbLink, $tag, $page_number, $nb_max_msg);
             ?>
+
+            <section>
+                <?php
+                    pagination($tag, $page_number, $nb_ligne, $nb_max_msg);
+                ?>
+            </section>
         </div>
         <!--            Main end            -->
 

@@ -141,6 +141,10 @@ body.loggedin {
     margin: auto;
 }
 
+.page input {
+    color: black;
+}
+
 .page section {
     padding: 25px;
     margin-bottom: 25px;
@@ -173,10 +177,6 @@ body.loggedin {
 
 }
 
-.recherche input {
-    color: black;
-}
-
 .tendance {
 
 }
@@ -190,6 +190,25 @@ body.loggedin {
     max-width: 1000px;
 }
 
+.reactions{
+    margin: 10px;
+    display: inline-flex;
+}
+
+.reactions div a {
+    text-decoration: none;
+}
+
+.icone_on img{
+    height: 30px;
+    margin-left: 20px;
+}
+
+.icone_off img{
+    opacity: 0.5;
+    height: 30px;
+    margin-left: 20px;
+}
 
 .inscription input {
     color: black;

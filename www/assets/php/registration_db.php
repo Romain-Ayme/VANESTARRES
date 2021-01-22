@@ -1,7 +1,8 @@
 <?php
     include_once "utils.inc.php";
 
-    function check_pseudo($pseudo, $dbLink) {
+    function check_pseudo($pseudo, $dbLink): ?string
+    {
 
         $query = 'SELECT PSEUDO FROM users WHERE PSEUDO = \'' . $pseudo . '\'';
         $dbResult = execute_query($dbLink, $query);
@@ -12,7 +13,8 @@
         return NULL;
     }
 
-    function check_e_mail($e_mail, $dbLink) {
+    function check_e_mail($e_mail, $dbLink): ?string
+    {
 
         if(!preg_match("/^[a-z0-9\-_.]+@[a-z]+\.[a-z]{2,3}$/i", $e_mail)) {
             return 'La syntaxe de l\'email n\'est pas conforme';
@@ -28,7 +30,8 @@
         return NULL;
     }
 
-    function inscription($pseudo, $e_mail, $pwd, $dbLink) {
+    function inscription($pseudo, $e_mail, $pwd, $dbLink): string
+    {
 
         $result = check_pseudo($pseudo, $dbLink);
         if($result == NULL) {
@@ -46,7 +49,7 @@
                                                                 \'' . $pseudo . '\')';
             execute_query($dbLink, $query);
 
-            $result = 'Votre inscription à bien était prise en compte : ';
+            $result = 'Votre inscription à bien été prise en compte : ';
             $result .= '<a href="login.php">Se connecter</a>';
 
             return $result;

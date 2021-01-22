@@ -2,8 +2,6 @@
 
     include_once "assets/php/utils.inc.php";
 
-
-
     // Création ou restauration de la session
     session_start();
 

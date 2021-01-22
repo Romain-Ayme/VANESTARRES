@@ -2,9 +2,9 @@
 // Création ou restauration de la session
 session_start();
 
-// Si déja connecté on fait une redirection vers : home.php
+// Si déja connecté on fait une redirection vers : index.php
 if (isset($_SESSION['loggedin'])) {
-    header('Location: home.php');
+    header('Location: index.php');
     exit;
 }
 

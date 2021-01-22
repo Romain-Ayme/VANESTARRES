@@ -13,7 +13,7 @@
         echo 'Logged it as user id: '.$user_id;
         $userData = $userService->getUser();
         // do stuff
-        header('Location: home.php');
+        header('Location: index.php');
     }
 
     else {

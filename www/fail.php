@@ -1,15 +1,15 @@
 <?php
-// Création ou restauration de la session
-session_start();
+    // Création ou restauration de la session
+    session_start();
 
-// Si déja connecté on fait une redirection vers : sucess.php
-if (isset($_SESSION['loggedin'])) {
-    header('Location: sucess.php');
-    exit;
-}
+    // Si déja connecté on fait une redirection vers : sucess.php
+    if (isset($_SESSION['loggedin'])) {
+        header('Location: sucess.php');
+        exit;
+    }
 
-include_once 'assets/php/utils.inc.php';
-start_page('fail');
+    include_once 'assets/php/utils.inc.php';
+    start_page('fail');
 ?>
     <!-- Body -->
 
@@ -18,9 +18,7 @@ start_page('fail');
         <div>
             <img class="logo" alt="" src="assets/Images/VANESTARRE.png"/>
             <h1>anestarre</h1>
-            <?php
-                navbar();
-            ?>
+            <?php navbar(); ?>
         </div>
     </nav>
     <!--            Header end          -->

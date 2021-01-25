@@ -1,6 +1,8 @@
 <?php
+
     include_once "utils.inc.php";
 
+    //On verifie si le pseudo exise deja pour l'inscription
     function check_pseudo($pseudo, $dbLink): ?string
     {
 
@@ -13,9 +15,12 @@
         return NULL;
     }
 
+
+    //On verifie si l'email exise deja pour l'inscription
     function check_e_mail($e_mail, $dbLink): ?string
     {
 
+        //Vérification de la syntaxe de l'email
         if(!preg_match("/^[a-z0-9\-_.]+@[a-z]+\.[a-z]{2,3}$/i", $e_mail)) {
             return 'La syntaxe de l\'email n\'est pas conforme';
         }
@@ -30,6 +35,8 @@
         return NULL;
     }
 
+
+    //On s'occupe d'inscrire la personne dans la BDD
     function inscription($pseudo, $e_mail, $pwd, $dbLink): string
     {
 

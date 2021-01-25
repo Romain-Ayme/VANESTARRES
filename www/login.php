@@ -1,15 +1,16 @@
 <?php
-// Création ou restauration de la session
-session_start();
+    // Création ou restauration de la session
+    session_start();
 
-// Si déja connecté on fait une redirection vers : index.php
-if (isset($_SESSION['loggedin'])) {
-    header('Location: index.php');
-    exit;
-}
+    // Si déja connecté on fait une redirection vers : index.php
+    if (isset($_SESSION['loggedin'])) {
+        header('Location: index.php');
+        exit;
+    }
 
-include_once 'assets/php/utils.inc.php';
-start_page('Connexion');
+    include_once 'assets/php/utils.inc.php';
+    start_page('Connexion');
+
 ?>
 <!-- Body -->
 <div class="login">
@@ -29,5 +30,5 @@ start_page('Connexion');
 <a href="" id="scrollUp" class="invisible"></a>
 <!-- Body end -->
 <?php
-end_page();
+    end_page();
 ?>

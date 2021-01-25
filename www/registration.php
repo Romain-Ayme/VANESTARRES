@@ -1,28 +1,30 @@
 <?php
-// Création ou restauration de la session
-session_start();
+    // Création ou restauration de la session
+    session_start();
 
-// Si déja connecté on fait une redirection vers : index.php
-if (isset($_SESSION['loggedin'])) {
-    header('Location: index.php');
-    exit;
-}
+    // Si déja connecté on fait une redirection vers : index.php
+    if (isset($_SESSION['loggedin'])) {
+        header('Location: index.php');
+        exit;
+    }
 
-include_once 'assets/php/registration_db.php';
-include_once 'assets/php/utils.inc.php';
-start_page('Inscription');
+    include_once 'assets/php/registration_db.php';
+    include_once 'assets/php/utils.inc.php';
+    start_page('Inscription');
 
-$dbLink = connect_db();
+    //Connexion à la base de donnée
+    $dbLink = connect_db();
 
-$pseudo = NULL;
-$e_mail = NULL;
-$pwd = NULL;
+    $pseudo = NULL;
+    $e_mail = NULL;
+    $pwd = NULL;
 
-if(isset($_POST['pseudo']) && isset($_POST['e_mail']) && isset($_POST['pwd'])) {
-    $pseudo = $_POST['pseudo'];
-    $e_mail = $_POST['e_mail'];
-    $pwd = $_POST['pwd'];
-}
+    //Si on a voulu s'incrire, on recupere les valeurs dans le formulaire
+    if(isset($_POST['pseudo']) && isset($_POST['e_mail']) && isset($_POST['pwd'])) {
+        $pseudo = $_POST['pseudo'];
+        $e_mail = $_POST['e_mail'];
+        $pwd = $_POST['pwd'];
+    }
 ?>
 
     <!-- Body -->
@@ -68,6 +70,7 @@ if(isset($_POST['pseudo']) && isset($_POST['e_mail']) && isset($_POST['pwd'])) {
             </section>
 
                 <?php
+                    //Si on a voulu s'inscrire, on execute la fonction d'inscription
                     if(isset($_POST['pseudo']) && isset($_POST['e_mail']) && isset($_POST['pwd'])) {
                         $result = inscription($pseudo, $e_mail, $pwd, $dbLink);
                         display_error('action', $result);
@@ -84,6 +87,8 @@ if(isset($_POST['pseudo']) && isset($_POST['e_mail']) && isset($_POST['pwd'])) {
     <!-- Body end -->
 
 <?php
-mysqli_close($dbLink);
-end_page();
+    //Couper la connexion avec la BDD
+    mysqli_close($dbLink);
+
+    end_page();
 ?>

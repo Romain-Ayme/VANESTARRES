@@ -1,7 +1,6 @@
 <?php
     session_start();
     include_once 'assets/php/LoginAuth.php';
-    include_once 'assets/php/mySQL.php';
 
     $pdo = new PDO('mysql:dbname=romain-ayme_vanestarre;host=mysql-romain-ayme.alwaysdata.net', '223609_php', 'zK7dQm4H3');
 

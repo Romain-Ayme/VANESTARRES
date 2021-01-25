@@ -1,69 +1,87 @@
 <?php
-// Création ou restauration de la session
-session_start();
+    // Création ou restauration de la session
+    session_start();
 
-// Si on est pas connecté on fait une redirection vers : login.php
-if (!isset($_SESSION['loggedin'])) {
-    header('Location: login.php');
-    exit;
-}
-
-include_once 'assets/php/utils.inc.php';
-include_once 'assets/php/change_param.php';
-include_once 'assets/php/registration_db.php';
-start_page('Compte');
-
-$dbLink = connect_db();
-
-$role = get_role($dbLink, $_SESSION['user_id']);
-
-$result_pwd = NULL;
-$result_param = NULL;
-$result_updade = NULL;
-$result_delete = NULL;
-$result_insert = NULL;
-
-if(isset($_POST['action_change_pwd'])) {
-    $old_pwd = $_POST['old_pwd'];
-    $new_pwd = $_POST['new_pwd'];
-
-    if($old_pwd == $_SESSION['password']) {
-        $result_pwd = change_pwd($new_pwd, $dbLink);
+    // Si on est pas connecté on fait une redirection vers : login.php
+    if (!isset($_SESSION['loggedin'])) {
+        header('Location: login.php');
+        exit;
     }
-    else {
-        $result_pwd = 'Mauvais mot de passe';
+
+    include_once 'assets/php/utils.inc.php';
+    include_once 'assets/php/change_param.php';
+    include_once 'assets/php/registration_db.php';
+    start_page('Compte');
+
+    //Connexion à la base de donnée
+    $dbLink = connect_db();
+
+    ///On récupère le rôle de l'utilisateur
+    $role = get_role($dbLink, $_SESSION['user_id']);
+
+    $result_pwd = NULL;
+    $result_param = NULL;
+    $result_updade = NULL;
+    $result_delete = NULL;
+    $result_insert = NULL;
+
+    //Si on a voulu changer le mot de passe, on recupere les valeurs des formulaires
+    if(isset($_POST['action_change_pwd'])) {
+        $old_pwd = $_POST['old_pwd'];
+        $new_pwd = $_POST['new_pwd'];
+
+        //Si le mot de passe dans le champ "ancien mot de passe" correspond à celui actuellement, on execute la fonction pour changer le mot de passe
+        if($old_pwd == $_SESSION['password']) {
+            $result_pwd = change_pwd($new_pwd, $dbLink);
+        }
+        //Sinon, le resultat = "mauvais mot de passe"
+        else {
+            $result_pwd = 'Mauvais mot de passe';
+        }
     }
-}
 
-if($role == 'SUPER') {
+    //Si c'est un administrateur qui est connecter à cette page, on peut recuperer les autres paramètres
+    if($role == 'SUPER') {
 
-    if (isset($_POST['action_param'])) {
-        $n_msg = $_POST['n_msg'];
-        $n_min = $_POST['n_min'];
-        $n_max = $_POST['n_max'];
+        //Si on a voulu changer les paramètres, on recupere les valeurs des formulaires
+        if (isset($_POST['action_param'])) {
+            $n_msg = $_POST['n_msg'];
+            $n_min = $_POST['n_min'];
+            $n_max = $_POST['n_max'];
 
-        $result_param = change_param($n_msg, $n_min, $n_max, $dbLink);
+            //On execute la fonction pour changer les paramètres
+            $result_param = change_param($n_msg, $n_min, $n_max, $dbLink);
+        }
 
-    } elseif (isset($_POST['action_update'])) {
-        $id_user = $_POST['id_user'];
-        $pseudo = $_POST['pseudo'];
-        $email = $_POST['email'];
+        //Sinon, si on a voulu modifier le pseudo ou l'email de quelqu'un, on recupere les valeurs des formulaires
+        elseif (isset($_POST['action_update'])) {
+            $id_user = $_POST['id_user'];
+            $pseudo = $_POST['pseudo'];
+            $email = $_POST['email'];
 
-        $result_updade = update_user($id_user, $pseudo, $email, $dbLink);
+            //On execute la fonction pour modifier le compte d'un utilisateur
+            $result_updade = update_user($id_user, $pseudo, $email, $dbLink);
+        }
 
-    } elseif (isset($_POST['action_delete'])) {
-        $pseudo = $_POST['pseudo'];
-        $id_user = $_POST['id_user'];
+        //Sinon, si on a voulu supprimer un utilisateur, on recupere les valeurs des forumaires
+        elseif (isset($_POST['action_delete'])) {
+            $pseudo = $_POST['pseudo'];
+            $id_user = $_POST['id_user'];
 
-        $result_delete = delete_user($pseudo, $id_user, $dbLink);
-    } elseif (isset($_POST['action_insert'])) {
-        $pwd = $_POST['pwd'];
-        $pseudo = $_POST['pseudo'];
-        $email = $_POST['email'];
+            //On execute la fonction pour supprimer l'utilisateur
+            $result_delete = delete_user($pseudo, $id_user, $dbLink);
+        }
 
-        $result_insert = inscription($pseudo, $email, $pwd, $dbLink);
+        //Sinon, si on a voulu inserer un nouveau compte, on recupere les valeurs des formulaires
+        elseif (isset($_POST['action_insert'])) {
+            $pwd = $_POST['pwd'];
+            $pseudo = $_POST['pseudo'];
+            $email = $_POST['email'];
+
+            //On execute la fonction pour inscrire le nouveau compte
+            $result_insert = inscription($pseudo, $email, $pwd, $dbLink);
+        }
     }
-}
 ?>
     <!-- Body -->
 
@@ -72,9 +90,7 @@ if($role == 'SUPER') {
         <div>
             <img class="logo" alt="" src="assets/Images/VANESTARRE.png"/>
             <h1>anestarre</h1>
-            <?php
-                navbar();
-            ?>
+            <?php navbar(); ?>
         </div>
     </nav>
     <!--            Header end          -->
@@ -117,9 +133,7 @@ if($role == 'SUPER') {
                     <section class="param">
                         <p>Paramètres de l'application</p>
 
-                        <?php
-                            display_param($dbLink);
-                        ?>
+                        <?php display_param($dbLink); ?>
 
                     </section>
 
@@ -159,6 +173,8 @@ if($role == 'SUPER') {
     <!-- Body end -->
 
 <?php
+    //Couper la connexion avec la BDD
     mysqli_close($dbLink);
+
     end_page();
 ?>

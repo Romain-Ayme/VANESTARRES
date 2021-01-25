@@ -1,23 +1,34 @@
 <?php
-// Création ou restauration de la session
-session_start();
+    // Création ou restauration de la session
+    session_start();
 
-include_once 'assets/php/mySQL.php';
-include_once 'assets/php/utils.inc.php';
-start_page('Vanestarre');
+    include_once 'assets/php/utils.inc.php';
+    start_page('Vanestarre');
 
-$dbLink = connect_db();
-$tag = NULL;
+    //Connexion à la base de donnée
+    $dbLink = connect_db();
 
-$nb_max_msg = get_n_mes($dbLink);
-$page_number = 1;
+    $tag = NULL;
+    $role = NULL;
 
-if(isset($_GET['page']))
-    $page_number = (int) $_GET['page'];
+    //Obtenir le nombre de message à afficher par page
+    $nb_max_msg = get_n_mes($dbLink);
 
+    //numero de la page de base
+    $page_number = 1;
 
-if(isset($_GET['search']))
-    $tag = $_GET['search'];
+    //Si on est connecté, on récupère le rôle de l'utilisateur
+    if(isset($_SESSION['loggedin'])) {
+        $role = get_role($dbLink, $_SESSION['user_id']);
+    }
+
+    //Si on a le numero de la page dans l'url, on affiche la page correspondante
+    if(isset($_GET['page']))
+        $page_number = (int) $_GET['page'];
+
+    //Si on a le tag a à rechercher dans l'url, la variable tag récupère la valeur
+    if(isset($_GET['search']))
+        $tag = $_GET['search'];
 
 ?>
 
@@ -28,9 +39,7 @@ if(isset($_GET['search']))
             <div>
                 <img class="logo" alt="" src="assets/Images/VANESTARRE.png"/>
                 <h1>anestarre</h1>
-                <?php
-                    navbar();
-                ?>
+                <?php navbar(); ?>
             </div>
         </nav>
     <!--            Header end          -->
@@ -66,9 +75,7 @@ if(isset($_GET['search']))
             <!--            Tendance            -->
             <section class="tendance">
                 <p>Top des ß : </p>
-                <?php
-                    tendance($dbLink);
-                ?>
+                <?php tendance($dbLink); ?>
             </section>
             <!--            Tendance end            -->
 
@@ -82,14 +89,10 @@ if(isset($_GET['search']))
 
         <!--            Main            -->
         <div class="main">
-            <?php
-                $nb_ligne = display_msg($dbLink, $tag, $page_number, $nb_max_msg);
-            ?>
+            <?php $nb_ligne = display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role); ?>
 
             <section>
-                <?php
-                    pagination($tag, $page_number, $nb_ligne, $nb_max_msg);
-                ?>
+                <?php pagination($tag, $page_number, $nb_ligne, $nb_max_msg); ?>
             </section>
         </div>
         <!--            Main end            -->
@@ -102,6 +105,8 @@ if(isset($_GET['search']))
 <!-- Body end -->
 
 <?php
+    //Couper la connexion avec la BDD
     mysqli_close($dbLink);
+
     end_page();
 ?>

@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	session_start();	//Récuperation de la session et destruction de celle-ci
 	session_destroy();
 	include_once 'assets/php/utils.inc.php';
 	start_page('Mot de passe enregristré');

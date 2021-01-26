@@ -10,24 +10,25 @@ if (isset($_SESSION['loggedin'])) {
 
 include_once 'assets/php/utils.inc.php';
 start_page('Connexion');
-?>
-<!-- Body -->
-<div class="login">
-    <h1>Login</h1>
-    <form action="authentification.php" method="post">
-        <label for="username">
-            <i class="fas fa-user"></i>
-        </label>
-        <input type="text" name="email" placeholder="Email" id="username" required>
-        <label for="password">
-            <i class="fas fa-lock"></i>
-        </label>
-        <input type="password" name="password" placeholder="Mot de passe" id="password" required>
-        <input type="submit" value="Login">
-    </form>
-</div>
-<a href="" id="scrollUp" class="invisible"></a>
-<!-- Body end -->
-<?php
+
+echo '
+<!-- Body -->', PHP_EOL, '
+<div class="login">', PHP_EOL, '
+    <h1>Connexion</h1>', PHP_EOL, '
+    <form action="authentification.php" method="post">', PHP_EOL, '
+        <label for="username">', PHP_EOL, '
+            <i class="fas fa-user"></i>', PHP_EOL, '
+        </label>', PHP_EOL, '
+        <input type="text" name="email" placeholder="Email" id="username" required>', PHP_EOL, '
+        <label for="password">', PHP_EOL, '
+            <i class="fas fa-lock"></i>', PHP_EOL, '
+        </label>', PHP_EOL, '
+        <input type="password" name="password" placeholder="Mot de passe" id="password" required>', PHP_EOL, '
+	<a href="mdp_oublie.php" class="mdpoublie">Mot de passe oublié ?</a>', PHP_EOL, '
+        <input type="submit" value="Login">', PHP_EOL, '
+    </form>', PHP_EOL, '
+
+</div>', PHP_EOL, '
+<a href="" id="scrollUp" class="invisible"></a>', PHP_EOL;
 end_page();
 ?>

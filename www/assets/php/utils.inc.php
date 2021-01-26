@@ -66,10 +66,10 @@
             $id_tag = $dbRow['ID_TAG'];
 
             //On recupere tous les messages qui ont le tag qu'on recherche
-            $query = 'SELECT MESSAGE, ID_USER, DATE_MESS, NB_AVANT_DON
+            $query = 'SELECT messages.ID_MESSAGE, MESSAGE, ID_USER, DATE_MESS, IMG, DONNE, DON_USER
                             FROM messages
                             JOIN messages_tags ON messages.ID_MESSAGE = messages_tags.ID_MESSAGE
-                            WHERE ID_TAG = \'' . $id_tag . '\' ORDER BY DATE_MESS DESC LIMIT ' . ($page_number - 1) * $nb_max_msg . ' , ' . $nb_max_msg . ' ';
+                            WHERE ID_TAG = ' . $id_tag . ' ORDER BY DATE_MESS DESC LIMIT ' . ($page_number - 1) * $nb_max_msg . ' , ' . $nb_max_msg . ' ';
             $msg_list = execute_query($dbLink, $query);
         }
 
@@ -78,28 +78,41 @@
 
 
     //On insert le message dans la BDD
-    function insert_msg_db($uid, $msg, $img, $dbLink) {
+    function insert_msg_db($uid, $msg, $dbLink, $id_mess) {
 
-        //On recupere le min et max avant don
-        $query = 'SELECT * FROM parametres';
-        $dbResult = execute_query($dbLink, $query);
+        if($id_mess == NULL) {
 
-        $dbRow = mysqli_fetch_assoc($dbResult);
-        $n_min = $dbRow['N_MIN'];
-        $n_max = $dbRow['N_MAX'];
+            //On recupere le min et max avant don
+            $query = 'SELECT * FROM parametres';
+            $dbResult = execute_query($dbLink, $query);
 
-        //On choisi un nombre avant don entre min et max
-        $nb_avant_don = rand($n_max, $n_min);
+            $dbRow = mysqli_fetch_assoc($dbResult);
+            $n_min = $dbRow['N_MIN'];
+            $n_max = $dbRow['N_MAX'];
 
-        $query = 'INSERT INTO messages (ID_USER, MESSAGE, IMG, NB_AVANT_DON) VALUES 
+            //On choisi un nombre avant don entre min et max
+            $nb_avant_don = rand($n_max, $n_min);
+
+            $query = 'INSERT INTO messages (ID_USER, MESSAGE, NB_AVANT_DON) VALUES 
                                                                             (\'' . $uid . '\',
                                                                             \'' . $msg . '\',
-                                                                            \'' . $img . '\',
                                                                             \'' . $nb_avant_don . '\')';
-        execute_query($dbLink, $query);
-        return mysqli_insert_id($dbLink);
+            execute_query($dbLink, $query);
+            return mysqli_insert_id($dbLink);
+        }
+
+        else {
+            $query = 'UPDATE messages SET MESSAGE = \'' . $msg . '\' WHERE ID_MESSAGE = ' . $id_mess;
+            execute_query($dbLink, $query);
+            return $id_mess;
+        }
     }
 
+    function update_img_db ($id_mess, $img_path, $dbLink) {
+
+        $query = 'UPDATE messages SET IMG = \'' . $img_path . '\' WHERE ID_MESSAGE = ' . $id_mess;
+        execute_query($dbLink, $query);
+    }
 
     //On s'occupe de la partie des tags
     function manage_tag($msg, $dbLink, $id_msg) {
@@ -136,6 +149,13 @@
     }
 
 
+    function delete_linked_tag($id_msg, $dbLink) {
+
+        $query = 'DELETE FROM messages_tags WHERE ID_MESSAGE = ' . $id_msg;
+        execute_query($dbLink, $query);
+    }
+
+
     //On affiche les messages
     function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role): int
     {
@@ -158,7 +178,7 @@
             //au moins une ligne à afficher
             $nb_ligne = $nb_ligne + 1;
 
-            $querynom = 'SELECT PSEUDO FROM users WHERE ID_USER = \'' . $dbRow['ID_USER'] . '\'';
+            $querynom = 'SELECT PSEUDO FROM users WHERE ID_USER = ' . $dbRow['ID_USER'];
             $dbResultNom = execute_query($dbLink, $querynom);
 
             $dbRowNom = mysqli_fetch_assoc($dbResultNom);
@@ -178,11 +198,11 @@
 
             echo '<div class="date_mess">', $dbRow['DATE_MESS'], '</div>'  , PHP_EOL;
 
-            //Si l'utilisateur actuel est administrateur, on affuche le bouton modifier
+            //Si l'utilisateur actuel est administrateur, on affiche le bouton modifier
             if($role == 'SUPER') {
                 echo '<div class="bouton_modif">'. PHP_EOL .
                     '<form action="creation_msg.php" method="post">'. PHP_EOL .
-                    '<input type="hidden" value="' . $dbRow['ID_MESSAGE'] . '"/>'. PHP_EOL .
+                    '<input type="hidden" name ="id_m" value="' . $dbRow['ID_MESSAGE'] . '"/>'. PHP_EOL .
                     '<input type="submit" value="Modifier"/>'. PHP_EOL .
                     '</form>'. PHP_EOL .
                     '</div>'. PHP_EOL;
@@ -259,7 +279,7 @@
     //On affiche le nombre de chaque réaction qu'un message a obtenu
     function reactions($id_mess, $dbLink) {
 
-        $query = 'SELECT NOTE, COUNT(*) FROM notes WHERE ID_MESSAGE = \'' . $id_mess . '\' GROUP BY NOTE';
+        $query = 'SELECT NOTE, COUNT(*) FROM notes WHERE ID_MESSAGE = ' . $id_mess . ' GROUP BY NOTE';
         $dbResult = execute_query($dbLink, $query);
 
         $nb_love = 0;
@@ -278,7 +298,7 @@
             }
 
             if(isset($_SESSION['loggedin'])) {
-                $query = 'SELECT NOTE FROM notes WHERE ID_USER = \'' . $_SESSION['user_id'] . '\' AND ID_MESSAGE = \'' . $id_mess . '\' GROUP BY NOTE';
+                $query = 'SELECT NOTE FROM notes WHERE ID_USER = ' . $_SESSION['user_id'] . ' AND ID_MESSAGE = ' . $id_mess . ' GROUP BY NOTE';
                 $dbResult = execute_query($dbLink, $query);
 
                 if(mysqli_num_rows($dbResult) != 0) {
@@ -291,23 +311,24 @@
         echo '<div class="reactions">' , PHP_EOL;
         echo '<div class ="icone_';
         if($note == 'L') echo 'on">'; else echo 'off">';
-        echo '<a href="reaction.php?id_m='. $id_mess . '&icone=L"> <img src="assets/Images/love.png"> </a>', $nb_love , PHP_EOL,
+        echo '<a href="assets/php/reaction.php?id_m='. $id_mess . '&icone=L"> <img src="assets/Images/love.png"> </a>', $nb_love , PHP_EOL,
         '</div>' , PHP_EOL;
 
         echo '<div class ="icone_';
         if($note == 'C') echo 'on">'; else echo 'off">';
-        echo '<a href="reaction.php?id_m='. $id_mess . '&icone=C"> <img src="assets/Images/cute.png"> </a>', $nb_cute , PHP_EOL,
+        echo '<a href="assets/php/reaction.php?id_m='. $id_mess . '&icone=C"> <img src="assets/Images/cute.png"> </a>', $nb_cute , PHP_EOL,
         '</div>' , PHP_EOL;
 
         echo '<div class ="icone_';
         if($note == 'S') echo 'on">'; else echo 'off">';
-        echo '<a href="reaction.php?id_m='. $id_mess . '&icone=S"> <img src="assets/Images/swag.png"> </a>', $nb_swag , PHP_EOL,
+        echo '<a href="assets/php/reaction.php?id_m='. $id_mess . '&icone=S"> <img src="assets/Images/swag.png"> </a>', $nb_swag , PHP_EOL,
         '</div>' , PHP_EOL;
 
         echo '<div class ="icone_';
         if($note == 'T') echo 'on">'; else echo 'off">';
-        echo '<a href="reaction.php?id_m='. $id_mess . '&icone=T"> <img src="assets/Images/style.png"> </a>', $nb_style , PHP_EOL,
+        echo '<a href="assets/php/reaction.php?id_m='. $id_mess . '&icone=T"> <img src="assets/Images/style.png"> </a>', $nb_style , PHP_EOL,
         '</div>' , PHP_EOL,
+
         '</div>' , PHP_EOL;
     }
 
@@ -394,9 +415,50 @@
     function get_role($dbLink, $id_user): string
     {
 
-        $query = 'SELECT ROLE_USER FROM users WHERE ID_USER =' . $id_user;
+        $query = 'SELECT ROLE_USER FROM users WHERE ID_USER = ' . $id_user;
         $dbResult = execute_query($dbLink, $query);
 
         $dbRow = mysqli_fetch_assoc($dbResult);
         return $dbRow['ROLE_USER'];
+    }
+
+    function nommage($type): string
+    {
+        if ($type == 'image/png') {
+            return 'image.png';
+        }
+
+        elseif ($type == 'image/gif') {
+            return 'image.gif';
+        }
+
+        elseif ($type == 'image/jpg') {
+            return 'image.jpg';
+        }
+
+        else  {
+            return 'image.jpeg';
+        }
+    }
+
+
+    function save_img($id_msg): string
+    {
+
+        $repertoireDestination = '../../../public/image_msg/' . $id_msg . '/';
+        $nom_img = nommage($_FILES['img']['type']);
+
+        if (!is_dir($repertoireDestination)) {
+
+            //Si le repertoire n'existe pas, on le crée
+            mkdir($repertoireDestination, 0777, true);
+        }
+
+        else {
+            array_map('unlink', glob($repertoireDestination.'*'));
+        }
+
+        move_uploaded_file($_FILES["img"]["tmp_name"] , $repertoireDestination.$nom_img);
+
+        return $repertoireDestination.$nom_img;
     }

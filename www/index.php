@@ -89,6 +89,15 @@
 
         <!--            Main            -->
         <div class="main">
+
+            <?php if(isset($_SESSION['loggedin']) && $role == 'SUPER') { ?>
+                <section>
+                    <form action="creation_msg.php" method="post">
+                        <input type="submit" value="Ajouter un message">
+                    </form>
+                </section>
+            <?php } ?>
+
             <?php $nb_ligne = display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role); ?>
 
             <section>

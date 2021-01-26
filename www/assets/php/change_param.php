@@ -5,7 +5,7 @@
     {
 
         //hashage pwd
-        $pwd = md5($new_pwd);
+        $pwd = password_hash($new_pwd, PASSWORD_DEFAULT);
 
         $query = 'UPDATE users SET PSWD = \'' . $pwd . '\' WHERE ID_USER = ' . $_SESSION['user_id'];
         execute_query($dbLink, $query);
@@ -96,7 +96,8 @@
 
 
     //On supprime l'utilisateur
-    function delete_user($pseudo, $id_user, $dbLink) {
+    function delete_user($pseudo, $id_user, $dbLink): string
+    {
 
         $query = 'DELETE FROM users WHERE ID_USER = ' . $id_user;
         execute_query($dbLink, $query);

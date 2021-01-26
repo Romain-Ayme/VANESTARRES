@@ -145,11 +145,16 @@ body.loggedin {
     color: black;
 }
 
+.image {
+    height: 300px;
+}
+
 .page section {
     padding: 25px;
     margin-bottom: 25px;
     background-color: #2f3947;
     box-shadow: 1px 1px 12px #707070;
+
 }
 
 .titre {

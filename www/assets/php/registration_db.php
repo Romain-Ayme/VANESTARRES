@@ -16,7 +16,7 @@
     }
 
 
-    //On verifie si l'email exise deja pour l'inscription
+    //On verifie si l'email existe deja pour l'inscription
     function check_e_mail($e_mail, $dbLink): ?string
     {
 
@@ -48,7 +48,7 @@
         if($result == NULL) {
 
             //hashage pwd
-            $pwd = md5($pwd);
+            $pwd = password_hash($pwd, PASSWORD_DEFAULT);
 
             $query = 'INSERT INTO users (EMAIL, PSWD, PSEUDO) VALUES 
                                                                 (\'' . $e_mail . '\',

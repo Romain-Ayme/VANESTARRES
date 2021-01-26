@@ -226,3 +226,20 @@ body.loggedin {
     background:rgba(52, 113, 226, 1);
     transition:all ease-in 0.2s;
 }
+
+.mdpoublie {
+	color: #5b6574;
+	
+}
+
+.recevoir_mail {
+	color: #5b6574;
+	padding: 10%;
+	text-align: center;
+}
+
+.texte {
+	text-align: center;
+	padding: 2%;
+	color: black;
+}

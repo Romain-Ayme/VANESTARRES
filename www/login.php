@@ -25,7 +25,7 @@ echo '
         </label>', PHP_EOL, '
         <input type="password" name="password" placeholder="Mot de passe" id="password" required>', PHP_EOL, '
 	<a href="mdp_oublie.php" class="mdpoublie">Mot de passe oublié ?</a>', PHP_EOL, '
-        <input type="submit" value="Login">', PHP_EOL, '
+        <input type="submit" value="Connexion">', PHP_EOL, '
     </form>', PHP_EOL, '
 
 </div>', PHP_EOL, '

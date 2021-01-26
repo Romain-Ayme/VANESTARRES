@@ -14,8 +14,12 @@ start_page('Connexion');
 echo '
 <!-- Body -->', PHP_EOL, '
 <div class="login">', PHP_EOL, '
-    <h1>Connexion</h1>', PHP_EOL, '
-    <form action="authentification.php" method="post">', PHP_EOL, '
+    <h1>Connexion</h1>', PHP_EOL;
+	if(isset($_SESSION['erreur'])) {
+		echo '<div class = "texte">Mauvais mot de passe / adresse</div>', PHP_EOL;
+		unset($_SESSION['erreur']);
+	}
+    echo '<form action="authentification.php" method="post">', PHP_EOL, '
         <label for="username">', PHP_EOL, '
             <i class="fas fa-user"></i>', PHP_EOL, '
         </label>', PHP_EOL, '
@@ -27,7 +31,6 @@ echo '
 	<a href="mdp_oublie.php" class="mdpoublie">Mot de passe oublié ?</a>', PHP_EOL, '
         <input type="submit" value="Connexion">', PHP_EOL, '
     </form>', PHP_EOL, '
-
 </div>', PHP_EOL, '
 <a href="" id="scrollUp" class="invisible"></a>', PHP_EOL;
 end_page();

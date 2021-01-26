@@ -16,7 +16,4 @@
 		header('location: fin_mdp_oublie.php');
 		}
 	}
-	else {
-		echo 'Non';
-	}
 ?>

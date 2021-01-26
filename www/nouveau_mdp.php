@@ -16,9 +16,9 @@ echo '
             <i class="fas fa-lock"></i>', PHP_EOL, '
         </label>', PHP_EOL, '
         <input type="password" name="pass2" placeholder="Confirmez votre nouveau mot de passe" id="pass2" required>', PHP_EOL;
-	if ($_SESSION['erreur'] == 1) {
+	if (isset($_SESSION['erreur'])) {
 		echo '<div class="texte"> Veuillez tapez le même mot de passe deux fois </div>';
-		$_SESSION['erreur'] = 0;
+		unset($_SESSION['erreur']);
 	}
         echo '<input type="submit" value="Valider">', PHP_EOL, '
     </form>', PHP_EOL, '

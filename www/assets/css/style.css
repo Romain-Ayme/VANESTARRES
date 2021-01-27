@@ -243,3 +243,72 @@ body.loggedin {
 	padding: 2%;
 	color: black;
 }
+
+@media screen and (max-device-width: 600px) {
+
+	html {
+		height: 100%;
+	}
+
+	.body {
+		height: inherit;
+	}
+	
+	.login {
+		width: inherit;
+		padding: 3%;
+		margin: 3%;
+	}
+
+	.login h1 {
+    		text-align: center;
+    		color: #5b6574;
+    		font-size: 500%;
+    		padding: 20px 0 20px 0;
+    		border-bottom: 1px solid #dee0e4;
+	}
+
+	.login form {
+    		display: flex;
+		flex-direction: column;
+    		flex-wrap: wrap;
+    		justify-content: center;
+    		padding-top: 20px;
+	}
+
+	.login form label {
+    		display: flex;
+    		justify-content: center;
+    		align-items: center;
+    		width: inherit;
+    		height: 100px;
+    		background-color: #3274d6;
+    		color: #ffffff;
+	}
+
+	.login form input[type="password"], .login form input[type="text"] {
+   		color: black;
+    		width: inherit;
+   	 	height: 100px;
+    		border: 1px solid #dee0e4;
+    		margin-bottom: 20px;
+    		padding: 0 15px;
+	}
+
+	.mdpoublie {
+		font-size: 200%;	
+	}
+
+	.login form input[type="submit"] {
+    		height: 100px;
+	}
+
+	.recevoir_mail {
+		font-size: 200%;
+	}
+
+	.texte {
+		font-size: 200%;
+	}
+
+}

@@ -11,31 +11,31 @@
         exit;
     }
 
-    $dbLink = mysqli_connect('mysql-romain-ayme.alwaysdata.net', '223609_php', 'zK7dQm4H3')
+    $dbLink = mysqli_connect('mysql-romain-ayme.alwaysdata.net', '223609_php', 'zK7dQm4H3')	//Connexion à la base
         or die('Erreur de connexion au serveur : ' . mysqli_connect_error());
     mysqli_select_db($dbLink , 'romain-ayme_vanestarre')
         or die('Erreur dans la sélection de la base : ' . mysqli_error($dbLink));
 
-    $msg = $_POST['msg'];
+    $msg = $_POST['msg'];	//Récuperation du message
 
-    $id_msg = insert_msg_db($_SESSION['user_id'], $msg, $img, $dbLink);
+    $id_msg = insert_msg_db($_SESSION['user_id'], $msg, $dbLink); //Insertion du message dans la base (Contenu du message et id de l'utilisateur)
 
-   manage_tag($msg, $dbLink, $id_msg);
+   manage_tag($msg, $dbLink, $id_msg);	//Création du tag (voir utils.inc.php)
 
-	$repertoireDestination = 'assets/utilisateurs/', $_SESSION['user_id'] ,'/img_msg/,' $id_msg ,'/';
-	$nomDestination = nommage($_FILES["msg"]["type"]);
+	$repertoireDestination = 'assets/utilisateurs/', $_SESSION['user_id'] ,'/img_msg/,' $id_msg ,'/'; //Chemin du repertoire de stockage de l'image
+	$nomDestination = nommage($_FILES["msg"]["type"]);	//Futur nom de l'image stocké
 
-	$nom = $repertoireDestination, $nomDestination;
+	$nom = $repertoireDestination, $nomDestination;		//Chemin complet
 
     	if (is_dir($nom)) {
                       echo 'Le message existe déjà';  
                       }
     	else { 
-          mkdir($nom);
+          mkdir($nom);	//Création du repertoire
           }
 
 	if (is_uploaded_file($_FILES["img"]["tmp_name"])) {
-		if (rename($_FILES["img"]["tmp_name"], $repertoireDestination.$nomDestination)) {
+		if (rename($_FILES["img"]["tmp_name"], $repertoireDestination.$nomDestination)) { //Déplacement de l'image + Changement de nom
 			echo 'Fichier uploadé';
 		}
 		else {
@@ -46,7 +46,7 @@
 		echo 'Erreur dans l'uploadage (terme approximatif) du fichier';
 	}
 
-	$query = 'INSERT INTO messages (IMG) VALUES (\'', $repertoireDestination, $nomDestination, '\')';
+	$query = 'INSERT INTO messages (IMG) VALUES (\'', $repertoireDestination, $nomDestination, '\')';	//Insertion du chemin dans la base
 	execute_query($dbLink, $query);
 ?>
 	

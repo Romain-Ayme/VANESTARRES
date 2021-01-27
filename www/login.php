@@ -31,7 +31,6 @@ echo '
 	<a href="mdp_oublie.php" class="mdpoublie">Mot de passe oublié ?</a>', PHP_EOL, '
         <input type="submit" value="Connexion">', PHP_EOL, '
     </form>', PHP_EOL, '
-</div>', PHP_EOL, '
-<a href="" id="scrollUp" class="invisible"></a>', PHP_EOL;
+</div>', PHP_EOL;
 end_page();
 ?>

@@ -155,6 +155,11 @@
         execute_query($dbLink, $query);
     }
 
+    function delete_note($id_msg, $dbLink) {
+        $query = 'DELETE FROM notes WHERE ID_MESSAGE = ' . $id_msg;
+        execute_query($dbLink, $query);
+    }
+
 
     //On affiche les messages
     function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role): int
@@ -198,12 +203,13 @@
 
             echo '<div class="date_mess">', $dbRow['DATE_MESS'], '</div>'  , PHP_EOL;
 
-            //Si l'utilisateur actuel est administrateur, on affiche le bouton modifier
+            //Si l'utilisateur actuel est administrateur, on affiche le bouton modifier et supprimer
             if($role == 'SUPER') {
                 echo '<div class="bouton_modif">'. PHP_EOL .
                     '<form action="creation_msg.php" method="post">'. PHP_EOL .
-                    '<input type="hidden" name ="id_m" value="' . $dbRow['ID_MESSAGE'] . '"/>'. PHP_EOL .
-                    '<input type="submit" value="Modifier"/>'. PHP_EOL .
+                    '<input type="hidden" name="id_m" value="' . $dbRow['ID_MESSAGE'] . '"/>'. PHP_EOL .
+                    '<input type="submit" name="modifier" value="Modifier"/>'. PHP_EOL .
+                    '<input type="submit" name="supprimer" value="Supprimer"/>'. PHP_EOL .
                     '</form>'. PHP_EOL .
                     '</div>'. PHP_EOL;
             }
@@ -336,7 +342,7 @@
     //On affiche tous les membres du site
     function display_membres($dbLink) {
 
-        $query = 'SELECT PSEUDO, EMAIL, ID_USER FROM users WHERE ID_USER !=' . $_SESSION['user_id'];
+        $query = 'SELECT PSEUDO, EMAIL, ID_USER, DELETED FROM users WHERE ID_USER !=' . $_SESSION['user_id'];
         $dbResult = execute_query($dbLink, $query);
 
         if (mysqli_num_rows($dbResult) != 0) {
@@ -344,13 +350,23 @@
                 $pseudo = $dbRow['PSEUDO'];
                 $email = $dbRow['EMAIL'];
                 $id_user = $dbRow['ID_USER'];
+                $is_deleted = $dbRow['DELETED'];
 
-                echo '<form action="parametre.php" method="post">' . PHP_EOL .
-                    '<input type="text" name="pseudo" value="' . $pseudo . '" required/>' . PHP_EOL .
-                    '<input type="text" name="email" value="' . $email . '" required/>' . PHP_EOL .
-                    '<input type="submit" name="action_update" value="Modifier"/>' . PHP_EOL .
-                    '<input type="submit" name="action_delete" value="Supprimer"/>' . PHP_EOL .
-                    '<input type="hidden" name="id_user" value="' . $id_user . '"/>' . PHP_EOL .
+                echo '<form action="parametre.php" method="post">' . PHP_EOL;
+
+                    if($is_deleted == 'Y') {
+
+                        echo '<input type="text" name="pseudo" value="' . $pseudo . '" disabled/>' . PHP_EOL .
+                            '<input type="text" name="email" value="' . $email . '" disabled/>' . PHP_EOL .
+                            '<input type="submit" name="action_toggle" value="Réactiver"/>' . PHP_EOL;
+                    }
+                    else {
+                        echo '<input type="text" name="pseudo" value="' . $pseudo . '" required/>' . PHP_EOL .
+                            '<input type="text" name="email" value="' . $email . '" required/>' . PHP_EOL .
+                            '<input type="submit" name="action_update" value="Modifier"/>' . PHP_EOL .
+                            '<input type="submit" name="action_toggle" value="Désactiver"/>' . PHP_EOL;
+                    }
+                    echo '<input type="hidden" name="id_user" value="' . $id_user . '"/>' . PHP_EOL .
                     '</form>' . PHP_EOL;
             }
         }
@@ -442,13 +458,29 @@
     }
 
 
+    function delete_img($id_msg)
+    {
+
+        $repertoireDestination = '../public/image_msg/' . $id_msg . '/';
+
+        if (is_dir($repertoireDestination)) {
+
+            //on efface l'image
+            array_map('unlink', glob($repertoireDestination.'*'));
+
+            //on efface le repertoire
+            rmdir($repertoireDestination);
+        }
+    }
+
+
     function save_img($id_msg): string
     {
 
         $repertoireDestination = '../../../public/image_msg/' . $id_msg . '/';
         $nom_img = nommage($_FILES['img']['type']);
 
-        if (!is_dir($repertoireDestination)) {
+        if (!file_exists($repertoireDestination)) {
 
             //Si le repertoire n'existe pas, on le crée
             mkdir($repertoireDestination, 0777, true);

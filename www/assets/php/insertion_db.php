@@ -18,7 +18,7 @@
     if($_POST['id_m'] != NULL) {
 
         //On recupere le message
-        $msg = $_POST['msg'];
+        $msg =  filter_input(INPUT_POST, 'msg', FILTER_SANITIZE_SPECIAL_CHARS);
 
         $id_msg = $_POST['id_m'];
 
@@ -33,7 +33,7 @@
         $id_msg = NULL;
 
         //On recupere le message
-        $msg = $_POST['msg'];
+        $msg = filter_input(INPUT_POST, 'msg', FILTER_SANITIZE_SPECIAL_CHARS);
 
         //On insert le message dans la BDD
         $id_msg = insert_msg_db($_SESSION['user_id'], $msg, $dbLink, $id_msg);

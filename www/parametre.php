@@ -64,12 +64,11 @@
         }
 
         //Sinon, si on a voulu supprimer un utilisateur, on recupere les valeurs des forumaires
-        elseif (isset($_POST['action_delete'])) {
-            $pseudo = $_POST['pseudo'];
+        elseif (isset($_POST['action_toggle'])) {
             $id_user = $_POST['id_user'];
 
             //On execute la fonction pour supprimer l'utilisateur
-            $result_delete = delete_user($pseudo, $id_user, $dbLink);
+            $result_delete = toggle_user($id_user, $dbLink);
         }
 
         //Sinon, si on a voulu inserer un nouveau compte, on recupere les valeurs des formulaires

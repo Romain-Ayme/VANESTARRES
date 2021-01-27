@@ -21,12 +21,30 @@
     if(isset($_POST['id_m'])) {
         $id_msg = $_POST['id_m'];
 
-        $query = 'SELECT MESSAGE, IMG FROM messages WHERE ID_MESSAGE = ' . $id_msg;
-        $dbResult = execute_query($dbLink, $query);
+        if(isset($_POST['supprimer'])) {
 
-        $dbRow = mysqli_fetch_assoc($dbResult);
-        $msg = $dbRow['MESSAGE'];
-        $img_path = $dbRow['IMG'];
+            delete_linked_tag($id_msg, $dbLink);
+
+            delete_note($id_msg, $dbLink);
+
+            delete_img($id_msg);
+
+            $query = 'DELETE FROM messages WHERE ID_MESSAGE = ' . $id_msg;
+            execute_query($dbLink, $query);
+
+            //On retourne sur la page d'avant
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
+        }
+
+        else {
+
+            $query = 'SELECT MESSAGE, IMG FROM messages WHERE ID_MESSAGE = ' . $id_msg;
+            $dbResult = execute_query($dbLink, $query);
+
+            $dbRow = mysqli_fetch_assoc($dbResult);
+            $msg = $dbRow['MESSAGE'];
+            $img_path = $dbRow['IMG'];
+        }
     }
 
     else {

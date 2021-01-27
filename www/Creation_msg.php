@@ -5,6 +5,6 @@ echo '
 	'</t><input type="text" name="msg" placeholder="Ecrit ton message ici...">', PHP_EOL,
 	'</t><input type="file" name="img" accept=".png, .jpg, .jpeg, .gif"><br/>', PHP_EOL,
 	'</t><input type="submit" value="Envoyer">', PHP_EOL,
-	'</form>', PHP_EOL
+	'</form>', PHP_EOL;
 ?>
 	

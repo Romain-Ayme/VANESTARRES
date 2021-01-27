@@ -100,10 +100,27 @@ function update_user($id_user, $pseudo, $email, $dbLink): string
 
 
 //On supprime l'utilisateur
-function delete_user($pseudo, $id_user, $dbLink) {
+function toggle_user($id_user, $dbLink): string
+{
 
-    $query = 'DELETE FROM users WHERE ID_USER = ' . $id_user;
+    $query = 'SELECT PSEUDO, DELETED FROM users WHERE ID_USER =' . $id_user;
+    $dbResult = execute_query($dbLink, $query);
+    $dbRow = mysqli_fetch_assoc($dbResult);
+    $is_deleted = $dbRow['DELETED'];
+    $pseudo = $dbRow['PSEUDO'];
+
+    if($is_deleted == 'Y') {
+        $is_deleted = 'N';
+        $result = ' réactivé';
+    }
+
+    else {
+        $is_deleted = 'Y';
+        $result = ' désactivé';
+    }
+
+    $query = 'UPDATE users SET DELETED = \'' . $is_deleted . '\' WHERE  ID_USER = ' . $id_user;
     execute_query($dbLink, $query);
 
-    return 'Utilisateur <b>' . $pseudo . '</b> supprimé';
+    return 'Utilisateur <b>' . $pseudo . '</b>' . $result;
 }

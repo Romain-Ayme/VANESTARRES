@@ -14,6 +14,7 @@ include_once 'assets/php/Registration_Process.php';
 
 include_once 'assets/php/HTML.php';
 
+
 //Connexion à la base de donnée
 $dbLink = connect_db();
 
@@ -65,13 +66,12 @@ if($role == 'SUPER') {
     }
 
     //Sinon, si on a voulu supprimer un utilisateur, on recupere les valeurs des forumaires
-    elseif (isset($_POST['action_delete'])) {
-        $pseudo = $_POST['pseudo'];
-        $id_user = $_POST['id_user'];
+        elseif (isset($_POST['action_toggle'])) {
+            $id_user = $_POST['id_user'];
 
-        //On execute la fonction pour supprimer l'utilisateur
-        $result_delete = delete_user($pseudo, $id_user, $dbLink);
-    }
+            //On execute la fonction pour supprimer l'utilisateur
+            $result_delete = toggle_user($id_user, $dbLink);
+        }
 
     //Sinon, si on a voulu inserer un nouveau compte, on recupere les valeurs des formulaires
     elseif (isset($_POST['action_insert'])) {

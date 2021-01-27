@@ -287,7 +287,7 @@ function paramPage($dbLink, $role, $result_param, $result_insert, $result_updade
     echo "\t\t\t" . '</div>' . PHP_EOL;
     echo "\t\t" . '</div>' . PHP_EOL;
     if($role == 'SUPER') {
-    paramPageAdmin($dbLink, $result_param, $result_insert, $result_updade,$result_delete);
+        paramPageAdmin($dbLink, $result_param, $result_insert, $result_updade,$result_delete);
     }
     echo "\t" . '</div>' . PHP_EOL;
 }

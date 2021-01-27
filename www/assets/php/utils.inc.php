@@ -23,19 +23,6 @@ function get_role($dbLink, $id_user): string
 }
 
 
-function tendance($dbLink) {
-
-    $query = 'SELECT NOM_TAG FROM messages_tags, tags WHERE messages_tags.ID_TAG = tags.ID_TAG GROUP BY messages_tags.ID_TAG ORDER BY count(*) DESC LIMIT 10';
-    $dbResult = execute_query($dbLink, $query);
-
-    if (mysqli_num_rows($dbResult) != 0) {
-        while($dbRow = mysqli_fetch_assoc($dbResult)) {
-            $nom_tag = $dbRow['NOM_TAG'];
-            echo '<a href="index.php?search='. $nom_tag . '">ß'. $nom_tag . '</a><br/>' . PHP_EOL;
-        }
-
-    }
-}
 
 //On affiche si la demande à reussi, sinon, on affiche pourquoi
 function display_error($post_id, $error) {

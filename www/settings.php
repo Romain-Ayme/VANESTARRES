@@ -88,16 +88,20 @@ NavPage($role);
 ?>
 
     <!--            Main            -->
-    <div class="main">
+    <div class="div_messages">
 
-        <section class="compte">
+        <!--            Titre          -->
+        <h1 class="titre">Paramètres</h1>
+        <!--            Titre end          -->
+
+        <div class="compte">
             <p>Les détails de votre compte sont ci-dessous</p>
 
             <p><b>Pseudo : </b><?php echo $_SESSION['pseudo']?></p>
 
-            <p><b>Email : </b><?php echo $_SESSION['name']?></p>
+            <p><b>Email : </b><?php echo $_SESSION['email']?></p>
 
-            <form action="parametre.php" method="post">
+            <form action="assets/php/Settings_Process.php" method="post">
 
                 <label>Ancien mot de passe :
                     <input type="password" name="old_pwd" required/><br/>
@@ -110,28 +114,28 @@ NavPage($role);
                 <input type="submit" name="action_change_pwd" value="Modifier le mot de passe"/>
 
             </form>
-        </section>
+        </div>
 
         <?php display_error('action_change_pwd', $result_pwd) ?>
 
         <?php if($role == 'SUPER') { ?>
-            <section class="param">
+            <div class="param">
                 <p>Paramètres de l'application</p>
 
                 <?php display_param($dbLink); ?>
 
-            </section>
+            </div>
 
             <?php display_error('action_param', $result_param) ?>
 
-            <section class="membres">
+            <div class="membres">
                 <p>Membres du site (Pseudo, Email)</p>
 
                 <div>
 
                     <?php display_membres($dbLink); ?>
 
-                    <form action="parametre.php" method="post">
+                    <form action="assets/php/Settings_Process.php" method="post">
                         <input type="text" name="pseudo" placeholder="Pseudo" required/>
                         <input type="email" name="email" placeholder="Email" required/>
                         <input type="password" name="pwd" placeholder="Mot de passe" required/>
@@ -139,7 +143,7 @@ NavPage($role);
                     </form>
 
                 </div>
-            </section>
+            </div>
 
             <?php display_error('action_insert', $result_insert) ?>
             <?php display_error('action_update', $result_updade) ?>

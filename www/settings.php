@@ -94,7 +94,7 @@ NavPage($role);
         <h1 class="titre">Paramètres</h1>
         <!--            Titre end          -->
 
-        <div class="compte">
+        <div class="param">
             <p>Les détails de votre compte sont ci-dessous</p>
 
             <p><b>Pseudo : </b><?php echo $_SESSION['pseudo']?></p>
@@ -128,7 +128,7 @@ NavPage($role);
 
             <?php display_error('action_param', $result_param) ?>
 
-            <div class="membres">
+            <div class="param">
                 <p>Membres du site (Pseudo, Email)</p>
 
                 <div>

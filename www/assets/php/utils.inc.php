@@ -27,7 +27,7 @@ function get_role($dbLink, $id_user): string
 //On affiche si la demande à reussi, sinon, on affiche pourquoi
 function display_error($post_id, $error) {
     if (isset($_POST[$post_id])) {
-        echo '<div>' . PHP_EOL;
+        echo '<div class="messages">' . PHP_EOL;
         echo '<p>' . $error . '</p>' . PHP_EOL;
         echo '</div>' . PHP_EOL;
     }

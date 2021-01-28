@@ -64,13 +64,13 @@ navPage($role);
 ?>
 
         <!--            Main            -->
-        <div class="main">
+        <div class="div_messages">
 
             <!--            Titre          -->
             <h1 class="titre"><?php if($id_msg == NULL) echo 'Nouveau message'; else echo 'Modification du message'; ?></h1>
             <!--            Titre end          -->
 
-            <div class="div_messages">
+            <div class="message">
                 <form action="assets/php/Add_Message_Process.php" method="post" enctype="multipart/form-data">
 
                     <input type="text" name="msg" placeholder="Ecrit ton message ici..." value="<?php echo $msg ?>" maxlength="50"><br/>

@@ -158,7 +158,7 @@ function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role): int
         //Si l'utilisateur actuel est administrateur, on affiche le bouton modifier et supprimer
         if($role == 'SUPER') {
             echo '<div class="bouton_modif">'. PHP_EOL .
-                '<form action="creation_msg.php" method="post">'. PHP_EOL .
+                '<form action="add_Message.php" method="post">'. PHP_EOL .
                 '<input type="hidden" name="id_m" value="' . $dbRow['ID_MESSAGE'] . '"/>'. PHP_EOL .
                 '<input type="submit" name="modifier" value="Modifier"/>'. PHP_EOL .
                 '<input type="submit" name="supprimer" value="Supprimer"/>'. PHP_EOL .
@@ -182,7 +182,7 @@ function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role): int
 
     //Si il n'y a plus de message à afficher, on previent l'utilisateur
     if($nb_ligne == 0) {
-        echo '<div>' , PHP_EOL;
+        echo '<div class="message">' , PHP_EOL;
         echo 'Fin des messages', PHP_EOL;
         echo '</div>' , PHP_EOL;
     }

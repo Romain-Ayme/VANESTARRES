@@ -129,6 +129,7 @@ form input[type=submit] {
     top: 2vh;
     align-self: flex-start;
 }
+
 .tag {
     background-color: #2f3947;
     margin: -30px -30px 1vh -30px;

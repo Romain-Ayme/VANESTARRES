@@ -1,5 +1,6 @@
 <?php
 
+//nomme le fichier en image."son type"
 function nommage($type): string
 {
     if ($type == 'image/png') {
@@ -19,7 +20,7 @@ function nommage($type): string
     }
 }
 
-
+//sauvegarde l'image dans le fichier correspondant
 function save_img($id_msg): string
 {
 
@@ -32,16 +33,18 @@ function save_img($id_msg): string
         mkdir($repertoireDestination, 0777, true);
     }
 
+    //on supprime les messages deja existant
     else {
         array_map('unlink', glob($repertoireDestination.'*'));
     }
 
+    //on met l'image dans le fichier
     move_uploaded_file($_FILES["img"]["tmp_name"] , $repertoireDestination.$nom_img);
 
     return $repertoireDestination.$nom_img;
 }
 
-
+//on supprime totalement l'image et le fichier
 function delete_img($id_msg)
 {
 

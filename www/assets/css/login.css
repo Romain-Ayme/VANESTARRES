@@ -6,31 +6,34 @@
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-decoration: none;
 }
+
 body {
+    display: flex;
     background-image: url(../img/background/Background.jpg) ;
     background-attachment: fixed;
 }
-.login {
+.item {
+    display: flex;
+    flex-direction: column;
     width: 400px;
     background-color: #ffffff;
     box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
     margin: 100px auto;
 }
-.login h1 {
+.item a {
     text-align: center;
-    color: #5b6574;
     font-size: 24px;
-    padding: 20px 0 20px 0;
-    border-bottom: 1px solid #dee0e4;
+    width: 100%;
 }
-.login form {
+.item form {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding-top: 20px;
 }
-.login form label {
+.item form label {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,14 +42,14 @@ body {
     background-color: #3274d6;
     color: #ffffff;
 }
-.login form input[type="password"], .login form input[type="email"], .login form input[type="text"] {
+.item form input[type="password"], .item form input[type="email"], .item form input[type="text"] {
     width: 310px;
     height: 50px;
     border: 1px solid #dee0e4;
     margin-bottom: 20px;
     padding: 0 15px;
 }
-.login form input[type="submit"] {
+.item form input[type="submit"] {
     width: 100%;
     padding: 15px;
     margin-top: 20px;
@@ -57,7 +60,28 @@ body {
     color: #ffffff;
     transition: background-color 0.2s;
 }
-.login form input[type="submit"]:hover {
+.item form input[type="submit"]:hover, .noselect:hover{
     background-color: #2868c7;
     transition: background-color 0.2s;
+    color: #ffffff;
+}
+
+.swap {
+    display: flex;
+    flex-direction: row;
+}
+
+.swapitem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3274d6;
+    color: #ffffff;
+    margin: 0px;
+    padding: 10px;
+}
+
+.select {
+    background-color: #ffffff;
+    color: #2868c7;
 }

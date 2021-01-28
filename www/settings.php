@@ -1,4 +1,10 @@
 <?php
+
+include_once 'assets/php/mySQL.php';
+include_once 'assets/php/Settings_Process.php';
+include_once 'assets/php/Registration_Process.php';
+include_once 'assets/php/display_HTML.php';
+
 // Création ou restauration de la session
 session_start();
 
@@ -7,12 +13,6 @@ if (!isset($_SESSION['loggedin'])) {
     header('Location: login.php');
     exit;
 }
-include_once 'assets/php/mySQL.php';
-include_once 'assets/php/Settings_Process.php';
-include_once 'assets/php/Registration_Process.php';
-
-include_once 'assets/php/display_HTML.php';
-
 
 //Connexion à la base de donnée
 $dbLink = connect_db();
@@ -64,11 +64,11 @@ if($role == 'SUPER') {
         $result_updade = update_user($id_user, $pseudo, $email, $dbLink);
     }
 
-    //Sinon, si on a voulu supprimer un utilisateur, on recupere les valeurs des forumaires
+    //Sinon, si on a voulu désactiver ou réactiver un utilisateur, on recupere les valeurs des forumaires
         elseif (isset($_POST['action_toggle'])) {
             $id_user = $_POST['id_user'];
 
-            //On execute la fonction pour supprimer l'utilisateur
+            //On execute la fonction pour désactiver ou réactiver l'utilisateur
             $result_delete = toggle_user($id_user, $dbLink);
         }
 
@@ -83,6 +83,7 @@ if($role == 'SUPER') {
     }
 }
 TopPage();
+
 NavPage($role);
 ?>
 
@@ -121,6 +122,7 @@ NavPage($role);
             <div class="param">
                 <p>Paramètres de l'application</p>
 
+                //affiche les parametre du site
                 <?php display_param($dbLink); ?>
 
             </div>
@@ -132,6 +134,7 @@ NavPage($role);
 
                 <div>
 
+                    //affiche les membres du site
                     <?php display_membres($dbLink); ?>
 
                     <form action="settings.php" method="post">
@@ -155,7 +158,9 @@ NavPage($role);
 
 
 <?php
+
 tagFooterPage($dbLink);
+
 //Couper la connexion avec la BDD
 mysqli_close($dbLink);
 ?>

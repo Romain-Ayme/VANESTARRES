@@ -1,7 +1,7 @@
 <?php
 
-
-include_once 'assets/php/display_HTML.php';    //Inclusion des fonctions
+//Inclusion des fonctions
+include_once 'assets/php/display_HTML.php';
 include_once 'assets/php/mySQL.php';
 include_once 'assets/php/forgotten_pwd_process.php';
 
@@ -50,6 +50,8 @@ topPage('css.css');     // Fonction de début de page
                     <a class="mdpoublie" href="login.php"> Retour </a>
 
                     <?php
+
+                    //si on a deja appuyé sur le bouton envoyer, on ne l'affiche plus
                     if (!isset($_POST['action'])) {
                         echo '<input type="submit" name="action" value="Envoyer">';
                     }
@@ -63,3 +65,7 @@ topPage('css.css');     // Fonction de début de page
     </body>
 </html>
 
+<?php
+
+//Couper la connexion avec la BDD
+mysqli_close($dbLink);

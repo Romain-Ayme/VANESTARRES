@@ -1,5 +1,7 @@
 <?php
 
+
+//on s'occupe de la partie des tags pour l'insertion de message
 function manage_tag($msg, $dbLink, $id_msg) {
 
     // Extraction des tags dans le message
@@ -34,6 +36,7 @@ function manage_tag($msg, $dbLink, $id_msg) {
 }
 
 
+//on supprime les liens entre le message et le ou les tags
 function delete_linked_tag($id_msg, $dbLink) {
 
     $query = 'DELETE FROM messages_tags WHERE ID_MESSAGE = ' . $id_msg;

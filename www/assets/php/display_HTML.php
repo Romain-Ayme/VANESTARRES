@@ -1,5 +1,6 @@
 <?php
 
+//head de page
 function topPage($css='css.css') {
     echo '<!DOCTYPE html>' . PHP_EOL;
     echo '<html lang="fr">' . PHP_EOL;
@@ -9,13 +10,13 @@ function topPage($css='css.css') {
     echo "\t" . '<link rel="icon" type="image/png" href="assets/img/logo/VANESTARRE.png"/>' . PHP_EOL;
     echo "\t" . '<link rel="stylesheet" type="text/css" href="assets/css/' . $css . '">' . PHP_EOL;
     echo "\t" . '<link rel="stylesheet" type="text/css" href="assets/css/scrollUp.css">' . PHP_EOL;
-//    echo "\t" . '<link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css">' . PHP_EOL;
-//    echo "\t" . '<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">' . PHP_EOL;
     echo "\t" . '<script src="assets/js/js.js"></script>' . PHP_EOL;
     echo '</head>' . PHP_EOL;
     echo '<body>' . PHP_EOL;
 }
 
+
+//affiche les boutons correspondant
 function sessionPage($role) {
     if (isset($_SESSION['loggedin'])) {
         echo "\t\t\t" . '<a href="settings.php"><i class="fa fa-cog"></i>Paramètres</a>' . PHP_EOL;
@@ -30,16 +31,20 @@ function sessionPage($role) {
     }
 }
 
+
+//affiche la navpage (à gauche du site)
 function navPage($role) {
     echo "\t" . '<nav class="nav">' . PHP_EOL;
     echo "\t\t" . '<img class="logo" alt="VANESTARRE" src="assets/img/logo/LOGOVANESTARRE.png"/>' . PHP_EOL;
     echo "\t\t" . '<div class="menu">' . PHP_EOL;
     echo "\t\t\t" . '<a href="index.php" class="home"><i class="fa fa-home"></i>Accueil</a>' . PHP_EOL;
+
     SessionPage($role);
-//    echo "\t\t\t" . '<audio autoplay src="assets/song/Vanessa.mp3">Your browser does not support the audio element.</audio>' . PHP_EOL;
+
     echo "\t\t" . '</div>' . PHP_EOL;
     echo "\t" . '</nav>' . PHP_EOL;
 }
+
 
 //On affiche le nombre de chaque réaction qu'un message a obtenu
 function reactions($id_mess, $dbLink) {
@@ -54,6 +59,7 @@ function reactions($id_mess, $dbLink) {
 
     $note = '';
 
+    //Si il y a une note, on affiche le montant
     if (mysqli_num_rows($dbResult) != 0) {
         while($dbRow = mysqli_fetch_assoc($dbResult)) {
             if($dbRow['NOTE'] == 'L') $nb_love = $dbRow['COUNT(*)'];
@@ -92,6 +98,7 @@ function reactions($id_mess, $dbLink) {
     echo '<a class="reaction style" href="assets/php/Reaction_Process.php?id_m='. $id_mess . '&icone=T"> <img class="img_reaction" alt="style" src="assets/img/icon/style.png"></a>' . $nb_style . '</div>' . PHP_EOL;
     echo "\t\t\t" . '</div>' , PHP_EOL;
 }
+
 
 //On affiche le numero de la page et les boutons pour pouvoir changer de page
 function pagination ($tag, $page_number, $nb_ligne, $nb_max_msg) {
@@ -186,6 +193,7 @@ function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role): int
         echo '</div>' , PHP_EOL;
     }
 
+    //affiche la pagination
     pagination($tag, $page_number, $nb_ligne, $nb_max_msg);
     echo "\t" . '</div>' . PHP_EOL;
 
@@ -193,12 +201,13 @@ function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role): int
 }
 
 
+//affiche la partie recherche de tag
 function start_TagFooterPage() {
     echo "\t" . '<div class="tag_and_footer">' . PHP_EOL;
     echo "\t\t" . '<div class="tag">' . PHP_EOL;
     echo "\t\t\t" . '<div class="recherche">' . PHP_EOL;
     echo "\t\t\t\t" . '<form action="index.php" method="get">' . PHP_EOL;
-    echo "\t\t\t\t\t" . '<input type="search" placeholder="Recherche" name="search">' . PHP_EOL;
+    echo "\t\t\t\t\t" . '<input type="search" placeholder="Recherche par ß" name="search">' . PHP_EOL;
     echo "\t\t\t\t\t" . '<input type="submit" value="Rechercher">' . PHP_EOL;
     echo "\t\t\t\t" . '</form>' . PHP_EOL;
     echo "\t\t\t" . '</div>' . PHP_EOL;
@@ -207,6 +216,8 @@ function start_TagFooterPage() {
     echo "\t\t\t\t" . '<ol class="list_tendance">' . PHP_EOL;
 }
 
+
+//affiche le top 10 des tags les plus populaires
 function tagPage($dbLink) {
 
     $query = 'SELECT NOM_TAG FROM messages_tags, tags WHERE messages_tags.ID_TAG = tags.ID_TAG GROUP BY messages_tags.ID_TAG ORDER BY count(*) DESC LIMIT 10';
@@ -221,6 +232,8 @@ function tagPage($dbLink) {
     }
 }
 
+
+//affiche le footer
 function end_TagFooterPage(){
     echo "\t\t\t\t" . '</ol>' . PHP_EOL;
     echo "\t\t\t" . '</div>' . PHP_EOL;
@@ -239,6 +252,8 @@ function end_TagFooterPage(){
     echo '</html>' . PHP_EOL;
 }
 
+
+//affiche l'ensemble de la partie de gauche
 function tagFooterPage($dbLink) {
     start_TagFooterPage();
     tagPage($dbLink);
@@ -256,7 +271,7 @@ function display_error($post_id, $error) {
 }
 
 
-//On affiche les paramètres (nombre de message par page, nombre min et max avant don)
+//On affiche les paramètres (nombre de message par page, nombre min et max de love avant don)
 function display_param($dbLink) {
 
     $query = 'SELECT * FROM parametres';
@@ -288,7 +303,7 @@ function display_param($dbLink) {
 }
 
 
-//On affiche tous les membres du site
+//On affiche tous les membres du site dans les parametres
 function display_membres($dbLink) {
 
     $query = 'SELECT PSEUDO, EMAIL, ID_USER, DELETED FROM users WHERE ID_USER !=' . $_SESSION['user_id'];

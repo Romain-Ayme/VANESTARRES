@@ -1,5 +1,7 @@
 <?php
 
+
+//envoie du mail
 function send_mail($email, $dbLink): string
 {
 
@@ -26,6 +28,8 @@ function send_mail($email, $dbLink): string
     return 'Un mail contenant les instructions à suivre va vous être envoyé. Si vous ne le recevez pas, vérifiez que vous avez bien orthographié votre adresse.';
 }
 
+
+//on change le mot de passe
 function change_pwd($pass1, $pass2, $code, $dbLink): string
 {
 

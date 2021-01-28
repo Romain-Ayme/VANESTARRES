@@ -27,6 +27,7 @@ if($_POST['id_m'] != NULL) {
     //On modifie le message dans la BDD
     $id_msg = insert_msg_db($_SESSION['user_id'], $msg, $dbLink, $id_msg);
 
+    //on supprime les liens avec le message d'avant
     delete_linked_tag($id_msg, $dbLink);
 }
 
@@ -45,10 +46,13 @@ else {
 //0n s'occupe de la partie des tags
 manage_tag($msg, $dbLink, $id_msg);
 
+//si on a modifier l'image ou inserer une image
 if($_FILES['img']['size'] != 0){
 
+    //creation du repertoire si il n'existe pas ou remplacement si il existe deja
     $img_path = save_img($id_msg);
 
+    //ajoute le path dans la bdd
     update_img_db($id_msg, $img_path, $dbLink);
 }
 

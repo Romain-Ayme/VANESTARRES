@@ -1,18 +1,22 @@
 <?php
 
+//va essayer de logger l'utilisateur
 function login_process($email, $password, $dbLink): string
 {
 
     $query = 'SELECT PSWD, DELETED FROM users WHERE EMAIL =\'' . $email . '\'';
     $dbResult = execute_query($dbLink, $query);
 
+    //si l'utilisateur existe, on continue les verifications
     if (mysqli_num_rows($dbResult) != 0) {
         $db_row = mysqli_fetch_assoc($dbResult);
         $pwd = $db_row['PSWD'];
         $is_deleted = $db_row['DELETED'];
 
+        //si le mot de passe est bon, on continue les verifications
         if (password_verify($password, $pwd)) {
 
+            //si l'utilisateur n'a pas été desactivé, on le connecte
             if($is_deleted == 'N')
             {
                 session_start();

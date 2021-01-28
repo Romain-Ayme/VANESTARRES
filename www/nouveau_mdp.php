@@ -28,6 +28,7 @@ if (isset($_POST['action'])) {
     $result = change_pwd($pass1, $pass2, $code, $dbLink);
 }
 
+//on recupère le code dans l'url
 if (isset($_GET['code'])) {
     $code = $_GET['code'];
 }
@@ -69,3 +70,8 @@ topPage('css.css');     // Fonction de début de page
         <a href="" id="scrollUp" class="invisible"></a>
     </body>
 </html>
+
+<?php
+
+//Couper la connexion avec la BDD
+mysqli_close($dbLink);

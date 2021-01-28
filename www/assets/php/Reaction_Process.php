@@ -1,5 +1,7 @@
 <?php
 
+include_once 'mySQL.php';
+
 // Création ou restauration de la session
 session_start();
 
@@ -9,14 +11,12 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 
-include_once 'mySQL.php';
-
 //Connexion à la base de donnée
 $dbLink = connect_db();
 
 $tag = NULL;
 
-//Si Si on a l'id d'un message ou une icone(reaction) dans l'url, on les recuperes
+//Si on a l'id d'un message ou une icone(reaction) dans l'url, on les recuperes
 if(isset($_GET['id_m']) && isset($_GET['icone'])) {
     $id_m = (int) $_GET['id_m'];
     $icone = $_GET['icone'];
@@ -26,7 +26,6 @@ if(isset($_GET['id_m']) && isset($_GET['icone'])) {
 else {
     exit;
 }
-
 
 $query = 'SELECT ID_NOTE, NOTE FROM notes WHERE ID_MESSAGE = ' . $id_m . ' AND ID_USER = ' . $_SESSION['user_id'];
 $dbResult = execute_query($dbLink, $query);

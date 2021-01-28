@@ -8,6 +8,7 @@ session_start();
 
 session_destroy();
 
+//connexion a la BDD
 $dbLink = connect_db();
 
 $e_mail = NULL;
@@ -22,8 +23,12 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
 
 TopPage('login.css');
 ?>
-        <div class="login">
-            <h1>Login</h1>
+        <div class="item login_nav">
+            <div class="swap">
+                <a class="swapitem login select">Login</a>
+                <a class="swapitem login noselect" href="index.php"><i class="fa fa-home"></i></a>
+                <a class="swapitem register noselect" href="register.php">Inscription</a>
+            </div>
             <form action="login.php" method="post">
                 <label for="email">
                     <i class="fas fa-user"></i>
@@ -33,8 +38,11 @@ TopPage('login.css');
                     <i class="fas fa-lock"></i>
                 </label>
                 <input type="password" name="password" placeholder="Mot de passe" required>
+
                 <a href="mdp_oublie.php" class="mdpoublie">Mot de passe oublié ?</a>
+
                 <input type="submit" name="action" value="Login">
+
             </form>
 
             <?php
@@ -48,3 +56,8 @@ TopPage('login.css');
         </div>
     </body>
 </html>
+
+<?php
+
+//Couper la connexion avec la BDD
+mysqli_close($dbLink);

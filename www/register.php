@@ -1,4 +1,9 @@
 <?php
+
+include_once 'assets/php/Registration_Process.php';
+include_once 'assets/php/mySQL.php';
+include_once 'assets/php/display_HTML.php';
+
 // Création ou restauration de la session
 session_start();
 
@@ -7,10 +12,6 @@ if (isset($_SESSION['loggedin'])) {
     header('Location: index.php');
     exit;
 }
-
-include_once 'assets/php/Registration_Process.php';
-include_once 'assets/php/mySQL.php';
-include_once 'assets/php/display_HTML.php';
 
 //Connexion à la base de donnée
 $dbLink = connect_db();
@@ -28,8 +29,12 @@ if(isset($_POST['pseudo']) && isset($_POST['e_mail']) && isset($_POST['pwd'])) {
 TopPage('login.css');
 ?>
 
-        <div class="login">
-            <h1>Inscription</h1>
+        <div class="item login_nav">
+            <div class="swap">
+                <a class="swapitem login noselect" href="login.php">Login</a>
+                <a class="swapitem login noselect" href="index.php"><i class="fa fa-home"></i></a>
+                <a class="swapitem register select">Inscription</a>
+            </div>
             <form action="register.php" method="post">
                 <label for="username">
                     <i class="fas fa-user"></i>
@@ -59,5 +64,6 @@ TopPage('login.css');
 </html>
 
 <?php
+
 //Couper la connexion avec la BDD
 mysqli_close($dbLink);

@@ -1,6 +1,6 @@
 <?php
 
-
+//connexion a la bdd
 function connect_db() {
     $dbLink = mysqli_connect('mysql-romain-ayme.alwaysdata.net', '223609_php', 'zK7dQm4H3')
     or die('Erreur de connexion au serveur : ' . mysqli_connect_error());
@@ -10,6 +10,7 @@ function connect_db() {
 }
 
 
+//execution de la requete
 function execute_query($dbLink, $query) {
     if(!($dbResult = mysqli_query($dbLink, $query))) {
         echo 'Erreur de requête<br/>';
@@ -21,6 +22,7 @@ function execute_query($dbLink, $query) {
 }
 
 
+//on recupere le nombre de message par page à afficher
 function get_n_mes($dbLink): int
 {
 
@@ -67,6 +69,8 @@ function search_tag($tag, $dbLink, $page_number, $nb_max_msg) {
     return $msg_list;
 }
 
+
+//on change le path de l'image dans la bdd
 function update_img_db ($id_mess, $img_path, $dbLink) {
 
     $query = 'UPDATE messages SET IMG = \'' . $img_path . '\' WHERE ID_MESSAGE = ' . $id_mess;
@@ -106,6 +110,7 @@ function insert_msg_db($uid, $msg, $dbLink, $id_mess) {
 }
 
 
+//on supprime les notes
 function delete_note($id_msg, $dbLink) {
     $query = 'DELETE FROM notes WHERE ID_MESSAGE = ' . $id_msg;
     execute_query($dbLink, $query);

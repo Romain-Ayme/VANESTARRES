@@ -95,8 +95,7 @@ navPage($role);
     <!-- Body end -->
 
 <?php
-//Couper la connexion avec la BDD
-
 tagFooterPage($dbLink);
 
+//Couper la connexion avec la BDD
 mysqli_close($dbLink);

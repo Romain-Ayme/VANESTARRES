@@ -41,6 +41,8 @@ function change_param($n_msg, $n_min, $n_max, $dbLink): string
     elseif($n_min <= 0) {
         return 'Le nombre minimum avant le don doit etre supérieur à 0';
     }
+
+    return '';
 }
 
 

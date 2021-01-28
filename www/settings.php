@@ -8,11 +8,10 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 include_once 'assets/php/mySQL.php';
-include_once 'assets/php/utils.inc.php';
 include_once 'assets/php/Settings_Process.php';
 include_once 'assets/php/Registration_Process.php';
 
-include_once 'assets/php/HTML.php';
+include_once 'assets/php/display_HTML.php';
 
 
 //Connexion à la base de donnée
@@ -101,7 +100,7 @@ NavPage($role);
 
             <p><b>Email : </b><?php echo $_SESSION['email']?></p>
 
-            <form action="assets/php/Settings_Process.php" method="post">
+            <form action="settings.php" method="post">
 
                 <label>Ancien mot de passe :
                     <input type="password" name="old_pwd" required/><br/>
@@ -135,7 +134,7 @@ NavPage($role);
 
                     <?php display_membres($dbLink); ?>
 
-                    <form action="assets/php/Settings_Process.php" method="post">
+                    <form action="settings.php" method="post">
                         <input type="text" name="pseudo" placeholder="Pseudo" required/>
                         <input type="email" name="email" placeholder="Email" required/>
                         <input type="password" name="pwd" placeholder="Mot de passe" required/>

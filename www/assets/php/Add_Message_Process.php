@@ -1,6 +1,7 @@
 <?php
 
-include_once "utils.inc.php";
+include_once "image_process.php";
+include_once "tag_process.php";
 include_once "mySQL.php";
 
 // Création ou restauration de la session

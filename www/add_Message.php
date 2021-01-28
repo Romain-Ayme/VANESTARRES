@@ -9,8 +9,9 @@ if (!isset($_SESSION['loggedin'])) {
     exit;
 }
 
-include_once 'assets/php/utils.inc.php';
-include_once 'assets/php/HTML.php';
+include_once 'assets/php/image_process.php';
+include_once 'assets/php/tag_process.php';
+include_once 'assets/php/display_HTML.php';
 include_once 'assets/php/mySQL.php';
 
 topPage();

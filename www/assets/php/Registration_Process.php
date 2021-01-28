@@ -1,7 +1,5 @@
 <?php
 
-include_once "utils.inc.php";
-
 //On verifie si le pseudo exise deja pour l'inscription
 function check_pseudo($pseudo, $dbLink): ?string
 {

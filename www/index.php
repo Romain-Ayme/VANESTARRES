@@ -1,10 +1,10 @@
 <?php
+
+include_once 'assets/php/display_HTML.php';
+include_once 'assets/php/mySQL.php';
+
 // Création ou restauration de la session
 session_start();
-
-include_once 'assets/php/utils.inc.php';
-include_once 'assets/php/HTML.php';
-include_once 'assets/php/mySQL.php';
 
 $dbLink = connect_db();
 $tag = NULL;

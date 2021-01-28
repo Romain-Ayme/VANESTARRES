@@ -5,39 +5,39 @@
 Dans le fichier [VANESTARRE.sql](https://github.com/Romain-Ayme/VANESTARRES/blob/main/VANESTARRE.sql "VANESTARRE.sql") vous trouverez la structure de la bases de données
 ### Les tables
  - messages 
-	 - ID_MESSAGE
-	 - ID_USER
-	 - DATE_MESS
-	 - MESSAGE
-	 - IMG
-	 - NB_AVANT_DON
-	 - DONNE
-	 - DON_USER
+	 - ID_MESSAGE = id du message
+	 - ID_USER = id de l'utilisateur
+	 - DATE_MESS = date du message 
+	 - MESSAGE = contenu du message
+	 - IMG = lien vers l'image
+	 - NB_AVANT_DON = Nombre avant don
+	 - DONNE = Si le nombre de love a étai atteint 
+	 - DON_USER = utilisateur qui à fais le don
 
 - message_tags
-	- ID_TAG
-	- ID_MESSAGE
+	- ID_TAG = id du tag
+	- ID_MESSAGE = id du message
 - notes
-	- ID_NOTE
-	- ID_MESSAGE
-	- ID_USER
-	- NOTE
+	- ID_NOTE = id de la réaction
+	- ID_MESSAGE = id du message
+	- ID_USER = id de l'utilisateur
+	- NOTE = type de réaction
 - parametres
-	- ID_PARAM
-	- N_MSG
-	- N_MIN
-	- N_MAX
+	- ID_PARAM = id du paramètre
+	- N_MSG = Nombre de message par page
+	- N_MIN = Nombre minimal avant don
+	- N_MAX = Nombre maximal avant don
 - tags
-	- ID_TAG
-	- NOM_TAG
+	- ID_TAG = id du tag
+	- NOM_TAG = nom du tag
 - users
-	- ID_USER
-	- EMAIL
-	- PSWD
-	- PSEUDO
-	- DATE_INS
-	- ROLE_USER
-	- DELETED
+	- ID_USER = id de l'utilisateur
+	- EMAIL = email de l’utilisateur
+	- PSWD = mot de passe de l’utilisateur
+	- PSEUDO = pseudo de l’utilisateur
+	- DATE_INS = date de création du compte
+	- ROLE_USER = role de l’utilisateur
+	- DELETED = status du compte
 
 ## Login et Mot de passe
 Les accès sont uniquement en lecture seule, vous pouvez envoyer un mail à romain.ayme.1@etu.univ-amu.fr pour avoir un compte admin si nécessité.

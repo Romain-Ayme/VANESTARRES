@@ -27,9 +27,9 @@ function get_role($dbLink, $id_user): string
 //On affiche si la demande à reussi, sinon, on affiche pourquoi
 function display_error($post_id, $error) {
     if (isset($_POST[$post_id])) {
-        echo '<section>' . PHP_EOL;
+        echo '<div>' . PHP_EOL;
         echo '<p>' . $error . '</p>' . PHP_EOL;
-        echo '</section>' . PHP_EOL;
+        echo '</div>' . PHP_EOL;
     }
 }
 
@@ -67,7 +67,7 @@ function display_param($dbLink) {
 //On affiche tous les membres du site
 function display_membres($dbLink) {
 
-    $query = 'SELECT PSEUDO, EMAIL, ID_USER FROM users WHERE ID_USER !=' . $_SESSION['user_id'];
+    $query = 'SELECT PSEUDO, EMAIL, ID_USER, DELETED FROM users WHERE ID_USER !=' . $_SESSION['user_id'];
     $dbResult = execute_query($dbLink, $query);
 
     if (mysqli_num_rows($dbResult) != 0) {
@@ -75,17 +75,28 @@ function display_membres($dbLink) {
             $pseudo = $dbRow['PSEUDO'];
             $email = $dbRow['EMAIL'];
             $id_user = $dbRow['ID_USER'];
+            $is_deleted = $dbRow['DELETED'];
 
-            echo '<form action="settings.php" method="post">' . PHP_EOL .
-                '<input type="text" name="pseudo" value="' . $pseudo . '" required/>' . PHP_EOL .
-                '<input type="text" name="email" value="' . $email . '" required/>' . PHP_EOL .
-                '<input type="submit" name="action_update" value="Modifier"/>' . PHP_EOL .
-                '<input type="submit" name="action_delete" value="Supprimer"/>' . PHP_EOL .
-                '<input type="hidden" name="id_user" value="' . $id_user . '"/>' . PHP_EOL .
+            echo '<form action="parametre.php" method="post">' . PHP_EOL;
+
+            if($is_deleted == 'Y') {
+
+                echo '<input type="text" name="pseudo" value="' . $pseudo . '" disabled/>' . PHP_EOL .
+                    '<input type="text" name="email" value="' . $email . '" disabled/>' . PHP_EOL .
+                    '<input type="submit" name="action_toggle" value="Réactiver"/>' . PHP_EOL;
+            }
+            else {
+                echo '<input type="text" name="pseudo" value="' . $pseudo . '" required/>' . PHP_EOL .
+                    '<input type="text" name="email" value="' . $email . '" required/>' . PHP_EOL .
+                    '<input type="submit" name="action_update" value="Modifier"/>' . PHP_EOL .
+                    '<input type="submit" name="action_toggle" value="Désactiver"/>' . PHP_EOL;
+            }
+            echo '<input type="hidden" name="id_user" value="' . $id_user . '"/>' . PHP_EOL .
                 '</form>' . PHP_EOL;
         }
     }
 }
+
 
 
 //Recherche des messages qui on le tag qu'on recherche
@@ -144,32 +155,6 @@ function manage_tag($msg, $dbLink, $id_msg) {
     }
 }
 
-function update_img_db ($id_mess, $img_path, $dbLink) {
-
-    $query = 'UPDATE messages SET IMG = \'' . $img_path . '\' WHERE ID_MESSAGE = ' . $id_mess;
-    execute_query($dbLink, $query);
-}
-
-function save_img($id_msg): string
-{
-
-    $repertoireDestination = '../../Public/user/1/msg/' . $id_msg . '/';
-    $nom_img = nommage($_FILES['img']['type']);
-
-    if (!file_exists($repertoireDestination)) {
-
-        //Si le repertoire n'existe pas, on le crée
-        mkdir($repertoireDestination, 0777, true);
-    }
-
-    else {
-        array_map('unlink', glob($repertoireDestination.'*'));
-    }
-
-    move_uploaded_file($_FILES["img"]["tmp_name"] , $repertoireDestination.$nom_img);
-
-    return $repertoireDestination.$nom_img;
-}
 
 function nommage($type): string
 {
@@ -188,6 +173,28 @@ function nommage($type): string
     else  {
         return 'image.jpeg';
     }
+}
+
+
+function save_img($id_msg): string
+{
+
+    $repertoireDestination = '../../Public/user/1/msg/' . $id_msg . '/';
+    $nom_img = nommage($_FILES['img']['type']);
+
+    if (!is_dir($repertoireDestination)) {
+
+        //Si le repertoire n'existe pas, on le crée
+        mkdir($repertoireDestination, 0777, true);
+    }
+
+    else {
+        array_map('unlink', glob($repertoireDestination.'*'));
+    }
+
+    move_uploaded_file($_FILES["img"]["tmp_name"] , $repertoireDestination.$nom_img);
+
+    return $repertoireDestination.$nom_img;
 }
 
 
@@ -214,5 +221,43 @@ function delete_linked_tag($id_msg, $dbLink) {
 
 function delete_note($id_msg, $dbLink) {
     $query = 'DELETE FROM notes WHERE ID_MESSAGE = ' . $id_msg;
+    execute_query($dbLink, $query);
+}
+
+
+//On insert le message dans la BDD
+function insert_msg_db($uid, $msg, $dbLink, $id_mess) {
+
+    if($id_mess == NULL) {
+
+        //On recupere le min et max avant don
+        $query = 'SELECT * FROM parametres';
+        $dbResult = execute_query($dbLink, $query);
+
+        $dbRow = mysqli_fetch_assoc($dbResult);
+        $n_min = $dbRow['N_MIN'];
+        $n_max = $dbRow['N_MAX'];
+
+        //On choisi un nombre avant don entre min et max
+        $nb_avant_don = rand($n_max, $n_min);
+
+        $query = 'INSERT INTO messages (ID_USER, MESSAGE, NB_AVANT_DON) VALUES 
+                                                                            (\'' . $uid . '\',
+                                                                            \'' . $msg . '\',
+                                                                            \'' . $nb_avant_don . '\')';
+        execute_query($dbLink, $query);
+        return mysqli_insert_id($dbLink);
+    }
+
+    else {
+        $query = 'UPDATE messages SET MESSAGE = \'' . $msg . '\' WHERE ID_MESSAGE = ' . $id_mess;
+        execute_query($dbLink, $query);
+        return $id_mess;
+    }
+}
+
+function update_img_db ($id_mess, $img_path, $dbLink) {
+
+    $query = 'UPDATE messages SET IMG = \'' . $img_path . '\' WHERE ID_MESSAGE = ' . $id_mess;
     execute_query($dbLink, $query);
 }

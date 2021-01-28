@@ -125,9 +125,6 @@ function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role) {
 
     $nb_ligne = 0;
 
-    echo "\t" . '<div class="div_messages">' . PHP_EOL;
-    echo "\t\t" . '<h1 class="titre">Dernier messages</h1>' . PHP_EOL;
-
     while ($dbRow = mysqli_fetch_assoc($dbResult)) {
 
         //au moins une ligne à afficher
@@ -153,10 +150,10 @@ function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role) {
 
         echo "\t\t\t" . '<div class="date_mess">' . $dbRow['DATE_MESS'] . '</div>' . PHP_EOL;
 
-        //Si l'utilisateur actuel est administrateur, on affiche le bouton modifier
+        //Si l'utilisateur actuel est administrateur, on affiche le bouton modifier et supprimer
         if($role == 'SUPER') {
             echo '<div class="bouton_modif">'. PHP_EOL .
-                '<form action="add_Message.php" method="post">'. PHP_EOL .
+                '<form action="creation_msg.php" method="post">'. PHP_EOL .
                 '<input type="hidden" name="id_m" value="' . $dbRow['ID_MESSAGE'] . '"/>'. PHP_EOL .
                 '<input type="submit" name="modifier" value="Modifier"/>'. PHP_EOL .
                 '<input type="submit" name="supprimer" value="Supprimer"/>'. PHP_EOL .
@@ -182,9 +179,9 @@ function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role) {
 
     //Si il n'y a plus de message à afficher, on previent l'utilisateur
     if($nb_ligne == 0) {
-        echo '<section>' , PHP_EOL;
+        echo '<div>' , PHP_EOL;
         echo 'Fin des messages', PHP_EOL;
-        echo '</section>' , PHP_EOL;
+        echo '</div>' , PHP_EOL;
     }
 //fin avec return sinon non
 //    return $nb_ligne;
@@ -240,54 +237,4 @@ function tagFooterPage($dbLink) {
     start_TagFooterPage();
     tagPage($dbLink);
     end_TagFooterPage();
-}
-
-function paramPageAdmin($dbLink, $result_param, $result_insert, $result_updade,$result_delete) {
-    echo '<p>Paramètres de l\'application</p>';
-    echo '<div class="admin"><p>Membres du site (Pseudo, Email)</p>';
-    display_membres($dbLink);
-    echo '<form action="settings.php" method="post">
-        <input type="text" name="pseudo" required/>
-        <input type="email" name="email" required/>
-        <input type="password" name="pwd" required/>
-        <input type="submit" name="action_insert" value="Ajouter"/>
-    </form>';
-
-    display_param($dbLink);
-
-    display_error('action_param', $result_param);
-    display_error('action_insert', $result_insert);
-    display_error('action_update', $result_updade);
-    display_error('action_delete', $result_delete);
-    echo '</div>';
-
-}
-
-function paramPage($dbLink, $role, $result_param, $result_insert, $result_updade, $result_delete) {
-
-    echo "\t" . '<div class="centre">' . PHP_EOL;
-    echo "\t\t" . '<h1 class="titre">Paramètres</h1>' . PHP_EOL;
-    echo "\t\t" . '<div class="param">' . PHP_EOL;
-    echo "\t\t\t" . '<h2 class="titre">Les détails de votre compte sont ci-dessous</h2>' . PHP_EOL;
-    echo "\t\t\t" . '<div class="info">' . PHP_EOL;
-    echo "\t\t\t\t" . '<p><b>Pseudo : </b>' . $_SESSION['pseudo'] . '</p>' . PHP_EOL;
-    echo "\t\t\t\t" . '<p><b>Email : </b>' . $_SESSION['email'] . '</p>' . PHP_EOL;
-
-    echo "\t\t\t\t" . '<form class="inf2" action="settings.php" method="post">' . PHP_EOL;
-
-    echo "\t\t\t\t\t" . '<label class="old">Ancien mot de passe :' . PHP_EOL;
-    echo "\t\t\t\t\t" . '<input type="password" name="old_pwd" required/>' . PHP_EOL;
-    echo "\t\t\t\t\t" . '</label>' . PHP_EOL;
-    echo "\t\t\t\t\t" . '<label class="new">Nouveau mot de passe :' . PHP_EOL;
-    echo "\t\t\t\t\t" . '<input type="password" name="new_pwd" required/>' . PHP_EOL;
-    echo "\t\t\t\t\t" . '</label>' . PHP_EOL;
-    echo "\t\t\t\t\t" . '<input type="submit" name="action_change_pwd" value="Modifier le mot de passe"/>' . PHP_EOL;
-
-    echo "\t\t\t\t" . '</form>' . PHP_EOL;
-    echo "\t\t\t" . '</div>' . PHP_EOL;
-    echo "\t\t" . '</div>' . PHP_EOL;
-    if($role == 'SUPER') {
-        paramPageAdmin($dbLink, $result_param, $result_insert, $result_updade,$result_delete);
-    }
-    echo "\t" . '</div>' . PHP_EOL;
 }

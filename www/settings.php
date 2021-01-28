@@ -85,10 +85,74 @@ if($role == 'SUPER') {
 }
 TopPage();
 NavPage($role);
-paramPage($dbLink, $role, $result_param, $result_insert, $result_updade,$result_delete);
+?>
 
-display_error('action_change_pwd', $result_pwd);
+    <!--            Main            -->
+    <div class="main">
 
+        <section class="compte">
+            <p>Les détails de votre compte sont ci-dessous</p>
+
+            <p><b>Pseudo : </b><?php echo $_SESSION['pseudo']?></p>
+
+            <p><b>Email : </b><?php echo $_SESSION['name']?></p>
+
+            <form action="parametre.php" method="post">
+
+                <label>Ancien mot de passe :
+                    <input type="password" name="old_pwd" required/><br/>
+                </label>
+
+                <label>Nouveau mot de passe :
+                    <input type="password" name="new_pwd" required/><br/>
+                </label>
+
+                <input type="submit" name="action_change_pwd" value="Modifier le mot de passe"/>
+
+            </form>
+        </section>
+
+        <?php display_error('action_change_pwd', $result_pwd) ?>
+
+        <?php if($role == 'SUPER') { ?>
+            <section class="param">
+                <p>Paramètres de l'application</p>
+
+                <?php display_param($dbLink); ?>
+
+            </section>
+
+            <?php display_error('action_param', $result_param) ?>
+
+            <section class="membres">
+                <p>Membres du site (Pseudo, Email)</p>
+
+                <div>
+
+                    <?php display_membres($dbLink); ?>
+
+                    <form action="parametre.php" method="post">
+                        <input type="text" name="pseudo" placeholder="Pseudo" required/>
+                        <input type="email" name="email" placeholder="Email" required/>
+                        <input type="password" name="pwd" placeholder="Mot de passe" required/>
+                        <input type="submit" name="action_insert" value="Ajouter"/>
+                    </form>
+
+                </div>
+            </section>
+
+            <?php display_error('action_insert', $result_insert) ?>
+            <?php display_error('action_update', $result_updade) ?>
+            <?php display_error('action_delete', $result_delete) ?>
+
+        <?php }?>
+
+    </div>
+    <!--            Main end            -->
+
+
+<?php
 tagFooterPage($dbLink);
 //Couper la connexion avec la BDD
 mysqli_close($dbLink);
+?>

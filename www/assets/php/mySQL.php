@@ -17,12 +17,3 @@ function execute_query($dbLink, $query) {
     }
     return $dbResult;
 }
-
-function insert_msg_db($uid, $msg, $dbLink) {
-
-    $query = 'INSERT INTO messages (ID_USER, MESSAGE) VALUES 
-                                                                    (\'' . $uid . '\',
-                                                                    \'' . $msg . '\')';
-    execute_query($dbLink, $query);
-    return mysqli_insert_id($dbLink);
-}

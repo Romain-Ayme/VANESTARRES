@@ -127,6 +127,9 @@ function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role): int
 
     $nb_ligne = 0;
 
+    echo "\t" . '<div class="div_messages">' . PHP_EOL;
+    echo "\t\t" . '<h1 class="titre">Dernier messages</h1>' . PHP_EOL;
+
     while ($dbRow = mysqli_fetch_assoc($dbResult)) {
 
         //au moins une ligne à afficher
@@ -189,7 +192,6 @@ function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role): int
 
     return $nb_ligne;
 }
-
 
 
 function start_TagFooterPage() {

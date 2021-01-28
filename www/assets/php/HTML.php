@@ -19,10 +19,10 @@ function topPage($css='css.css') {
 
 function sessionPage($role) {
     if (isset($_SESSION['loggedin'])) {
-        echo "\t\t\t" . '<a href="settings.php"><i class="fa fa-cog"></i>Paramètres</a>' . PHP_EOL;
-        echo "\t\t\t" . '<a href="assets/php/Logout_Process.php"><i class="fas fa-sign-out-alt"></i>Se déconnecter</a>' . PHP_EOL;
+        echo "\t\t\t" . '<a class="home" href="settings.php"><i class="fa fa-cog"></i>Paramètres</a>' . PHP_EOL;
+        echo "\t\t\t" . '<a class="home" href="assets/php/Logout_Process.php"><i class="fas fa-sign-out-alt"></i>Se déconnecter</a>' . PHP_EOL;
         if ($role == 'SUPER') {
-            echo "\t\t\t" . '<a class="home" href="add_Message.php"><i class="fas fa-comment"></i>Ecrire un message</a>' . PHP_EOL;
+            echo "\t\t\t" . '<a class="ecrire_msg" href="add_Message.php"><i class="fas fa-comment"></i>Ecrire un message</a>' . PHP_EOL;
         }
     }
     else {

@@ -109,8 +109,10 @@ function pagination ($tag, $page_number, $nb_ligne, $nb_max_msg) {
     echo PHP_EOL . "\t\t" . '</div>' . PHP_EOL;
 }
 
+
 //On affiche les messages
-function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role) {
+function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role): int
+{
 
     //Si on recherche un tag, on execute la fonction qui va rechercher tous les messages qui sont associés au tag
     if ($tag != NULL) {
@@ -130,25 +132,25 @@ function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role) {
         //au moins une ligne à afficher
         $nb_ligne = $nb_ligne + 1;
 
-        $querynom = 'SELECT PSEUDO FROM users WHERE ID_USER = \'' . $dbRow['ID_USER'] . '\'';
+        $querynom = 'SELECT PSEUDO FROM users WHERE ID_USER = ' . $dbRow['ID_USER'];
         $dbResultNom = execute_query($dbLink, $querynom);
 
         $dbRowNom = mysqli_fetch_assoc($dbResultNom);
 
-        echo "\t\t" . '<div class="message">' . PHP_EOL;
-        echo "\t\t\t" . '<h2 class="author">' . $dbRowNom['PSEUDO'] . '</h2>' . PHP_EOL;
-
-        echo "\t\t\t" . '<div class="message_text"><p>' . $dbRow['MESSAGE'] . '</p></div>' . PHP_EOL;
+        echo '<div>' , PHP_EOL;
+        echo '<div class="titreMsg">', $dbRowNom['PSEUDO'], '</div>' , PHP_EOL;
 
         //Si il y a une image, on l'affiche
         if($dbRow['IMG'] != NULL) {
-            echo "\t\t\t" . '<div class="message_img_box"><img class="image" alt="" src="' . $dbRow['IMG'] . '"/></div>' . PHP_EOL;
+            echo '<img class="image" alt="" src="' . $dbRow['IMG'] . '"/>' . PHP_EOL;
         }
+
+        echo '<div class="message">', $dbRow['MESSAGE'], '</div>' , PHP_EOL;
 
         //On affiche les icones(reactions)
         reactions($dbRow['ID_MESSAGE'], $dbLink);
 
-        echo "\t\t\t" . '<div class="date_mess">' . $dbRow['DATE_MESS'] . '</div>' . PHP_EOL;
+        echo '<div class="date_mess">', $dbRow['DATE_MESS'], '</div>'  , PHP_EOL;
 
         //Si l'utilisateur actuel est administrateur, on affiche le bouton modifier et supprimer
         if($role == 'SUPER') {
@@ -160,7 +162,7 @@ function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role) {
                 '</form>'. PHP_EOL .
                 '</div>'. PHP_EOL;
         }
-        echo "\t\t" . '</div>' . PHP_EOL;
+        echo '</div>' , PHP_EOL;
 
         //Si il y a un utilisateur connecté, et qu'il faut donner un don, alors on affiche un message d'alerte
         if(isset($_SESSION['loggedin'])) {
@@ -174,8 +176,6 @@ function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role) {
             }
         }
     }
-    pagination($tag, $page_number, $nb_ligne, $nb_max_msg);
-    echo "\t" . '</div>' . PHP_EOL;
 
     //Si il n'y a plus de message à afficher, on previent l'utilisateur
     if($nb_ligne == 0) {
@@ -183,9 +183,11 @@ function display_msg($dbLink, $tag, $page_number, $nb_max_msg, $role) {
         echo 'Fin des messages', PHP_EOL;
         echo '</div>' , PHP_EOL;
     }
-//fin avec return sinon non
-//    return $nb_ligne;
+
+    return $nb_ligne;
 }
+
+
 
 function start_TagFooterPage() {
     echo "\t" . '<div class="tag_and_footer">' . PHP_EOL;

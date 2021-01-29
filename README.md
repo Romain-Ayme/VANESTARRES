@@ -3,10 +3,6 @@
 - Ayme Romain
 - Charrat Romain
 - Drets Lilian
-## [Lien du site](http://romain-ayme.alwaysdata.net/)
-## Configuration logicielle
-- PHP Version 7.3.24
-- MYSQLI Version 5.0.12-dev
 
 ## Intro
 On devait faire un réseau social pour Vanéstarre qui comprenaient: 
@@ -31,6 +27,13 @@ On devait faire un réseau social pour Vanéstarre qui comprenaient:
 |marlin		|marlin.casalporte@hotmail.fr	|qtcreator	|user	|
 |Jean-Hugues	|Jean-Hugues@gmail.com		|jesuisunmdp	|user	|
 
+## Configuration logicielle
+- PHP Version 7.3.24
+- MYSQLI Version 5.0.12-dev
+
+## Liens utiles
+[GitHub](https://github.com/Romain-Ayme/VANESTARRES)
+[Lien du site](http://romain-ayme.alwaysdata.net/)
 ## Bases  de données
 Dans le fichier [VANESTARRE.sql](https://github.com/Romain-Ayme/VANESTARRES/blob/main/VANESTARRE.sql "VANESTARRE.sql") vous trouverez la structure de la bases de données
 ### Les tables
@@ -88,3 +91,5 @@ Les accès sont uniquement en lecture seule, vous pouvez envoyer un mail à roma
 	
 ## Besoin d'aide
 Si vous ne recevez pas de mail lors de la réinitialisation du mot de c'est de  la faute à alwaysdata (en local ça marche).
+
+[GitHub](https://github.com/Romain-Ayme/VANESTARRES)

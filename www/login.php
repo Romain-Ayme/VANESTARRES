@@ -2,7 +2,7 @@
 
 include_once 'assets/php/display_HTML.php';
 include_once 'assets/php/mySQL.php';
-include_once 'assets/php/login_Process.php';
+include_once 'assets/php/login_process.php';
 
 session_start();
 
@@ -30,20 +30,14 @@ TopPage('login.css');
                 <a class="swapitem register noselect" href="register.php">Inscription</a>
             </div>
             <form action="login.php" method="post">
-                <label>
+                <label for="email">
                     <i class="fas fa-user"></i>
                 </label>
                 <input type="email" name="email" placeholder="Email" required>
-                <label>
+                <label for="password">
                     <i class="fas fa-lock"></i>
                 </label>
                 <input type="password" name="password" placeholder="Mot de passe" required>
-
-                <a href="mdp_oublie.php" class="mdpoublie">Mot de passe oublié ?</a>
-
-                <input type="submit" name="action" value="Login">
-
-            </form>
 
             <?php
             //Si on a voulu se connecter, on execute la fonction de login
@@ -52,6 +46,12 @@ TopPage('login.css');
                 display_error('action', $result);
             }
             ?>
+
+                <a href="mdp_oublie.php" class="mdpoublie">Mot de passe oublié ?</a>
+
+                <input type="submit" name="action" value="Login">
+
+            </form>
 
         </div>
     </body>

@@ -85,3 +85,22 @@ body {
     background-color: #ffffff;
     color: #2868c7;
 }
+
+@media screen and (max-device-width: 600px) {
+
+	.body {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+	.item {
+		margin-top: 400px;
+		scale: 2;
+	}
+
+
+
+
+
+
+}

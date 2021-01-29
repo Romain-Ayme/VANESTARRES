@@ -292,7 +292,7 @@ function display_param($dbLink) {
         '<input type="number" name="n_max" value="' . $n_max . '" required/><br/>' . PHP_EOL .
         '</label>' . PHP_EOL .
 
-        '<input type="submit" name="action_param" value="Sauvegarder les paramètres"/>' . PHP_EOL .
+        '<input type="submit" id="setting" name="action_param" value="Sauvegarder les paramètres"/>' . PHP_EOL .
 
         '</form>' . PHP_EOL;
 
@@ -316,12 +316,12 @@ function display_membres($dbLink) {
 
             if($is_deleted == 'Y') {
 
-                echo '<input type="text" name="pseudo" value="' . $pseudo . '" disabled/>' . PHP_EOL .
+                echo '<input "setting_text" type="text" name="pseudo" value="' . $pseudo . '" disabled/>' . PHP_EOL .
                     '<input type="email" name="email" value="' . $email . '" disabled/>' . PHP_EOL .
                     '<input type="submit" name="action_toggle" value="Réactiver"/>' . PHP_EOL;
             }
             else {
-                echo '<input type="text" name="pseudo" value="' . $pseudo . '" required/>' . PHP_EOL .
+                echo '<input "setting_text" type="text" name="pseudo" value="' . $pseudo . '" required/>' . PHP_EOL .
                     '<input type="email" name="email" value="' . $email . '" required/>' . PHP_EOL .
                     '<input type="submit" name="action_update" value="Modifier"/>' . PHP_EOL .
                     '<input type="submit" name="action_toggle" value="Désactiver"/>' . PHP_EOL;

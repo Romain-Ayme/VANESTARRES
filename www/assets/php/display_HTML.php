@@ -20,7 +20,7 @@ function topPage($css='css.css') {
 function sessionPage($role) {
     if (isset($_SESSION['loggedin'])) {
         echo "\t\t\t" . '<a href="settings.php"><i class="fa fa-cog"></i>Paramètres</a>' . PHP_EOL;
-        echo "\t\t\t" . '<a href="assets/php/Logout_Process.php"><i class="fas fa-sign-out-alt"></i>Se déconnecter</a>' . PHP_EOL;
+        echo "\t\t\t" . '<a href="assets/php/logout_Process.php"><i class="fas fa-sign-out-alt"></i>Se déconnecter</a>' . PHP_EOL;
         if ($role == 'SUPER') {
             echo "\t\t\t" . '<a href="add_Message.php"><i class="fas fa-comment"></i>Ecrire un message</a>' . PHP_EOL;
         }
@@ -83,19 +83,19 @@ function reactions($id_mess, $dbLink) {
 
     echo "\t\t\t\t" . '<div class ="icone_';
     if($note == 'L') echo 'on">'; else echo 'off">';
-    echo '<a class="reaction love" href="assets/php/Reaction_Process.php?id_m='. $id_mess . '&icone=L"> <img class="img_reaction" alt="love" src="assets/img/icon/love.png"></a>' . $nb_love . '</div>' . PHP_EOL;
+    echo '<a class="reaction love" href="assets/php/reaction_Process.php?id_m='. $id_mess . '&icone=L"> <img class="img_reaction" alt="love" src="assets/img/icon/love.png"></a>' . $nb_love . '</div>' . PHP_EOL;
 
     echo "\t\t\t\t" . '<div class ="icone_';
     if($note == 'C') echo 'on">'; else echo 'off">';
-    echo '<a class="reaction cute" href="assets/php/Reaction_Process.php?id_m='. $id_mess . '&icone=C"> <img class="img_reaction" alt="cute" src="assets/img/icon/cute.png"></a>' . $nb_cute . '</div>' . PHP_EOL;;
+    echo '<a class="reaction cute" href="assets/php/reaction_Process.php?id_m='. $id_mess . '&icone=C"> <img class="img_reaction" alt="cute" src="assets/img/icon/cute.png"></a>' . $nb_cute . '</div>' . PHP_EOL;;
 
     echo "\t\t\t\t" . '<div class ="icone_';
     if($note == 'S') echo 'on">'; else echo 'off">';
-    echo '<a class="reaction swag" href="assets/php/Reaction_Process.php?id_m='. $id_mess . '&icone=S"> <img class="img_reaction" alt="swag" src="assets/img/icon/swag.png"></a>' . $nb_swag . '</div>' . PHP_EOL;
+    echo '<a class="reaction swag" href="assets/php/reaction_Process.php?id_m='. $id_mess . '&icone=S"> <img class="img_reaction" alt="swag" src="assets/img/icon/swag.png"></a>' . $nb_swag . '</div>' . PHP_EOL;
 
     echo "\t\t\t\t" . '<div class ="icone_';
     if($note == 'T') echo 'on">'; else echo 'off">';
-    echo '<a class="reaction style" href="assets/php/Reaction_Process.php?id_m='. $id_mess . '&icone=T"> <img class="img_reaction" alt="style" src="assets/img/icon/style.png"></a>' . $nb_style . '</div>' . PHP_EOL;
+    echo '<a class="reaction style" href="assets/php/reaction_Process.php?id_m='. $id_mess . '&icone=T"> <img class="img_reaction" alt="style" src="assets/img/icon/style.png"></a>' . $nb_style . '</div>' . PHP_EOL;
     echo "\t\t\t" . '</div>' , PHP_EOL;
 }
 

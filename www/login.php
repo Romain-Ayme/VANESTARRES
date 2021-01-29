@@ -2,7 +2,7 @@
 
 include_once 'assets/php/display_HTML.php';
 include_once 'assets/php/mySQL.php';
-include_once 'assets/php/login_process.php';
+include_once 'assets/php/login_Process.php';
 
 session_start();
 
@@ -30,11 +30,11 @@ TopPage('login.css');
                 <a class="swapitem register noselect" href="register.php">Inscription</a>
             </div>
             <form action="login.php" method="post">
-                <label for="email">
+                <label>
                     <i class="fas fa-user"></i>
                 </label>
                 <input type="email" name="email" placeholder="Email" required>
-                <label for="password">
+                <label>
                     <i class="fas fa-lock"></i>
                 </label>
                 <input type="password" name="password" placeholder="Mot de passe" required>

@@ -72,7 +72,7 @@ navPage($role);
             <!--            Titre end          -->
 
             <div class="message">
-                <form action="assets/php/Add_Message_Process.php" method="post" enctype="multipart/form-data">
+                <form action="assets/php/add_Message_Process.php" method="post" enctype="multipart/form-data">
 
                     <input type="text" name="msg" placeholder="Ecrit ton message ici..." value="<?php echo $msg ?>" maxlength="50"><br/>
 

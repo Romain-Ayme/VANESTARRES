@@ -1,8 +1,8 @@
 <?php
 
 include_once 'assets/php/mySQL.php';
-include_once 'assets/php/Settings_Process.php';
-include_once 'assets/php/Registration_Process.php';
+include_once 'assets/php/settings_Process.php';
+include_once 'assets/php/registration_Process.php';
 include_once 'assets/php/display_HTML.php';
 
 // Création ou restauration de la session

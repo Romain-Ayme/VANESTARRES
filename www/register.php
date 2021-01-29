@@ -1,6 +1,6 @@
 <?php
 
-include_once 'assets/php/Registration_Process.php';
+include_once 'assets/php/registration_Process.php';
 include_once 'assets/php/mySQL.php';
 include_once 'assets/php/display_HTML.php';
 
@@ -36,15 +36,15 @@ TopPage('login.css');
                 <a class="swapitem register select">Inscription</a>
             </div>
             <form action="register.php" method="post">
-                <label for="username">
+                <label>
                     <i class="fas fa-user"></i>
                 </label>
                 <input type="text" name="pseudo" placeholder="Pseudo" required>
-                <label for="username">
+                <label>
                     <i class="fas fa-at"></i>
                 </label>
                 <input type="email" name="e_mail" placeholder="Email" required>
-                <label for="password">
+                <label>
                     <i class="fas fa-lock"></i>
                 </label>
                 <input type="password" name="pwd" placeholder="Mot de passe" required>

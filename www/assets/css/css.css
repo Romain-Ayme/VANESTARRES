@@ -10,7 +10,7 @@
 }
 
 html {
-	font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
 }
 
 img {
@@ -44,7 +44,7 @@ body {
     margin-top: 2vh;
     border-radius: 25px;
 
-/*          sticky           */
+    /*          sticky           */
     position: sticky;
     top: 2vh;
     align-self: flex-start;
@@ -67,12 +67,12 @@ i {
 }
 
 .message, .tag, .footer, .nav, .pagination {
-	color: whitesmoke;
-	margin: 1%;
+    color: whitesmoke;
+    margin: 1%;
 }
 
 .date_mess {
-	padding: 1%;
+    padding: 1%;
 }
 
 .div_messages, .centre {
@@ -83,32 +83,32 @@ i {
 }
 
 .home {
-	text-decoration: none;
-	color: whitesmoke;
+    text-decoration: none;
+    color: whitesmoke;
     transition: all 0.25s ease-in-out;
 }
 
 .home:hover {
-	color: #2f3947;
-	background-color: whitesmoke;
+    color: #2f3947;
+    background-color: whitesmoke;
     transition: all 0.25s ease-in-out;
 }
 
 
 p.paginationindex {
-	text-decoration: none;
-	color: whitesmoke;
-	font-size: 150%
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 150%
 }
 
 .paginationindex a {
-	text-decoration: none;
-	color: #11d9f2;
-	font-size: 150%
+    text-decoration: none;
+    color: #11d9f2;
+    font-size: 150%
 }
 
 .paginationindex a:hover {
-	color: whitesmoke;
+    color: whitesmoke;
 }
 
 .message, .param, .pagination {
@@ -180,23 +180,23 @@ form input[type=submit] {
 }
 
 .tag a {
-	text-decoration: none;
-	color: whitesmoke;
+    text-decoration: none;
+    color: whitesmoke;
 }
 
 .tag a:hover {
-	color: #11d9f2;
+    color: #11d9f2;
 }
 
 .ecrire_msg {
-	text-decoration: none;
-	color: #11d9f2; 
+    text-decoration: none;
+    color: #11d9f2;
     transition: all 0.25s ease-in-out;
 }
 
 .ecrire_msg:hover {
     background-color: #11d9f2;
-	color: #2f3947;
+    color: #2f3947;
     transition: all 0.25s ease-in-out;
 
 }
@@ -313,147 +313,147 @@ div.list_reaction {
 }
 
 .bouton_modif {
-	padding: 1%;
+    padding: 1%;
 }
 
 @media screen and (max-device-width: 600px) {
 
-	body {
-    		display: flex;
-    		flex-direction: column;
-    		justify-content: space-around;
-    		background-image: url(../img/background/Background.jpg);
-    		background-attachment: fixed;
-	}
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        background-image: url(../img/background/Background.jpg);
+        background-attachment: fixed;
+    }
 
-	.logo {
-		width: 100%;
-		height: 100%;
-	}
-
-
-	.nav {
-		margin: 0;
-    		order: 1;
-    		display: flex;
-    		flex-direction: column;
-    		justify-content: flex-start;
-    		background-color: #2f3947;
-		height: 100%;
-		width: 100%;
-    		padding: 30px;
-    		margin-top: 2vh;
-    		border-radius: 25px;
-
-		/*          sticky           */
-    		position: sticky;
-    		top: 2vh;
-    		align-self: flex-start;
-		font-size: 300%;
-		align-items: center;
-		position: static;
-	}
-
-	.menu {
-    		display: flex;
-    		flex-direction: row;
-	}
-
-	nav.nav > div.menu > a {
-    		font-size: 100%;
-	}
+    .logo {
+        width: 100%;
+        height: 100%;
+    }
 
 
-	.home {
-		text-decoration: none;
-		color: whitesmoke;
-    		transition: all 0.25s ease-in-out;
-	}
+    .nav {
+        margin: 0;
+        order: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        background-color: #2f3947;
+        height: 100%;
+        width: 100%;
+        padding: 30px;
+        margin-top: 2vh;
+        border-radius: 25px;
 
-	.div_messages, .centre {
-    		order: 2;
-    		display: flex;
-    		flex-direction: column;
-    		width: 100%;
-	}
+        /*          sticky           */
+        position: sticky;
+        top: 2vh;
+        align-self: flex-start;
+        font-size: 300%;
+        align-items: center;
+        position: static;
+    }
 
-	h1.titre {
-    		margin: 20px auto;
-    		padding: 25px;
-    		font-size: 500%;
-    		border-bottom: 1px solid #bfbfbf;
-    		color: #4a536e;
-    		text-align: center;
-    		width: 100%;
-	}
+    .menu {
+        display: flex;
+        flex-direction: row;
+    }
 
-	.message h2 {
-		font-size: 300%;
-	}
+    nav.nav > div.menu > a {
+        font-size: 100%;
+    }
 
-	div.message_text > p{
-		font-size: 250%;
-	}
 
-	.list_reaction {
-		scale: 2;
-	}
+    .home {
+        text-decoration: none;
+        color: whitesmoke;
+        transition: all 0.25s ease-in-out;
+    }
 
-	.date_mess {
-		margin-top: 5%;
-	}
+    .div_messages, .centre {
+        order: 2;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
 
-	.pagination {
-		font-size: 300%;
-	}
+    h1.titre {
+        margin: 20px auto;
+        padding: 25px;
+        font-size: 500%;
+        border-bottom: 1px solid #bfbfbf;
+        color: #4a536e;
+        text-align: center;
+        width: 100%;
+    }
 
-	.tag_and_footer {
-    		order: 3;
-    		display: flex;
-    		flex-direction: column;
-    		justify-content: flex-start;
-   		padding: 30px;
-    		margin-top: 2vh;
+    .message h2 {
+        font-size: 300%;
+    }
 
-    		/*          sticky           */
-    		position: static;
-    		top: 2vh;
-    		align-self: flex-start;
-		width: 105%;
-		height: 100%;
-		}
+    div.message_text > p{
+        font-size: 250%;
+    }
 
-	.tag {
-    		background-color: #2f3947;
-    		margin: -30px -30px 1vh -30px;
-    		border-radius: 25px;
-    		padding: 5%;
-		width: 100%;
-		align-items: center;
-		display: flex;
-		flex-direction: column;
-	}
+    .list_reaction {
+        scale: 2;
+    }
 
-	.recherche {
-		scale: 2;
-	}
+    .date_mess {
+        margin-top: 5%;
+    }
 
-	.visible {
-		display: none;
-	}
+    .pagination {
+        font-size: 300%;
+    }
 
-	ol.list_tendance > li > a{
-		width: 50%;
-		font-size: 300%;
-	}
+    .tag_and_footer {
+        order: 3;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 30px;
+        margin-top: 2vh;
 
-	div.tendance > h3{
-		font-size: 300%;
-	}
-	
-	footer.footer > span {
-		font-size: 200%;
-	}
+        /*          sticky           */
+        position: static;
+        top: 2vh;
+        align-self: flex-start;
+        width: 105%;
+        height: 100%;
+    }
+
+    .tag {
+        background-color: #2f3947;
+        margin: -30px -30px 1vh -30px;
+        border-radius: 25px;
+        padding: 5%;
+        width: 100%;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .recherche {
+        scale: 2;
+    }
+
+    .visible {
+        display: none;
+    }
+
+    ol.list_tendance > li > a{
+        width: 50%;
+        font-size: 300%;
+    }
+
+    div.tendance > h3{
+        font-size: 300%;
+    }
+
+    footer.footer > span {
+        font-size: 200%;
+    }
 
 
 }

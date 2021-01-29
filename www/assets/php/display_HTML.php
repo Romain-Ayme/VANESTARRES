@@ -19,15 +19,15 @@ function topPage($css='css.css') {
 //affiche les boutons correspondant
 function sessionPage($role) {
     if (isset($_SESSION['loggedin'])) {
-        echo "\t\t\t" . '<a class="home" href="settings.php"><i class="fa fa-cog"></i>Paramètres</a>' . PHP_EOL;
-        echo "\t\t\t" . '<a class="home" href="assets/php/logout_Process.php"><i class="fas fa-sign-out-alt"></i>Se déconnecter</a>' . PHP_EOL;
+        echo "\t\t\t" . '<a href="settings.php"><i class="fa fa-cog"></i>Paramètres</a>' . PHP_EOL;
+        echo "\t\t\t" . '<a href="assets/php/logout_Process.php"><i class="fas fa-sign-out-alt"></i>Se déconnecter</a>' . PHP_EOL;
         if ($role == 'SUPER') {
-            echo "\t\t\t" . '<a class="ecrire_msg" href="add_Message.php"><i class="fas fa-comment"></i>Ecrire un message</a>' . PHP_EOL;
+            echo "\t\t\t" . '<a href="add_Message.php"><i class="fas fa-comment"></i>Ecrire un message</a>' . PHP_EOL;
         }
     }
     else {
-        echo "\t\t\t" . '<a class="home" href="login.php"><i class="fas fa-sign-in-alt"></i>Se connecter</a>' . PHP_EOL;
-        echo "\t\t\t" . '<a class="home" href="register.php"><i class="fa fa-user-plus"></i>S\'inscrire</a>' . PHP_EOL;
+        echo "\t\t\t" . '<a href="login.php"><i class="fas fa-sign-in-alt"></i>Se connecter</a>' . PHP_EOL;
+        echo "\t\t\t" . '<a href="register.php"><i class="fa fa-user-plus"></i>S\'inscrire</a>' . PHP_EOL;
     }
 }
 
@@ -105,12 +105,12 @@ function pagination ($tag, $page_number, $nb_ligne, $nb_max_msg) {
     echo "\t\t" . '<div class="pagination">' . PHP_EOL;
     echo "\t\t\t" . '<p class="paginationindex">';
     if($page_number > 1)
-        echo "\t\t\t" . '<a href="index.php?search=' . $tag . '&page=' . ($page_number - 1) . '"><</a>';
+        echo  '<a href="index.php?search=' . $tag . '&page=' . ($page_number - 1) . '"><i class="fas fa-chevron-left"></i></a>';
 
     echo $page_number;
 
     if(!($nb_ligne ==0 || $nb_ligne < $nb_max_msg))
-        echo '<a href="index.php?search=' . $tag . '&page=' . ($page_number + 1) . '">></a>';
+        echo '<a href="index.php?search=' . $tag . '&page=' . ($page_number + 1) . '"><i class="fas fa-chevron-right"></i></a>';
     echo '</p>';
     echo PHP_EOL . "\t\t" . '</div>' . PHP_EOL;
 }

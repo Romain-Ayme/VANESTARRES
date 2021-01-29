@@ -90,6 +90,4 @@ Les accès sont uniquement en lecture seule, vous pouvez envoyer un mail à roma
 	7Z28jLbWe
 	
 ## Besoin d'aide
-Si vous ne recevez pas de mail lors de la réinitialisation du mot de c'est de  la faute à alwaysdata (en local ça marche).
-
-[GitHub](https://github.com/Romain-Ayme/VANESTARRES)
+Si vous ne recevez pas de mail lors de la réinitialisation du mot de passe c'est de la faute à alwaysdata (en local ça marche).

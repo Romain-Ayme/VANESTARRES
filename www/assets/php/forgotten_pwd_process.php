@@ -19,7 +19,9 @@ function send_mail($email, $dbLink): string
                             Veuillez vous rendre au lien suivant: http://romain-ayme.alwaysdata.net/nouveau_mdp.php?code=' . $code . '\r\n
                             Si vous n\'êtes pas à l\'origine de cette demande, trouvez le coupable.';
 
-        mail($email,  $subject, $message);
+        $headers = 'From: "Nom_de_expediteur"<smtp-romain-ayme.alwaysdata.net>'."\n"; // Expediteur
+
+        mail($email,  $subject, $message, $headers);
 
         $query = 'UPDATE users SET PSWD = \'' . $code . '\' WHERE EMAIL = \'' . $email . '\'';
         execute_query($dbLink, $query);

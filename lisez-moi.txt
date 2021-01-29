@@ -21,7 +21,7 @@ On devait faire un réseau social pour Vanéstarre qui comprenaient:
 |Login		      |Email				                  |Mot de passe	  |Role	  |
 |---------------|-------------------------------|---------------|-------|
 |Vanéstarre	    |vane@star.re			              |Kiwi		        |Admin	|
-|romain_ayme	  |romain-ayme@alwaysdata.net	    |Kiwi		        |user	  |
+|romain_aym	  |romain-ayme@alwaysdata.net	    |Kiwi		        |user	  |
 |Lilian		      |parmenio.abz@gmail.com		      |drets		      |user	  |
 |Rauren		      |rauren@hotmail.fr		          |rauren		      |user	  |
 |marlin		      |marlin.casalporte@hotmail.fr	  |qtcreator      |user	  |

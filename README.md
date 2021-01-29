@@ -6,6 +6,10 @@
 ## [Lien du site](http://romain-ayme.alwaysdata.net/)
 ## Intro
 On devait faire un réseau social pour Vanéstarre.
+50 caractères maximum par message.
+Pouvoir taguer des messages avec ß.
+Faire une recherche par tag.
+Pouvoir mètre des interactions sur les messages
 
 ## Login
 |Login		|Email				|Mot de passe	|

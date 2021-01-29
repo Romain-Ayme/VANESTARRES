@@ -239,7 +239,7 @@ function end_TagFooterPage(){
     echo "\t\t\t" . '</div>' . PHP_EOL;
     echo "\t\t" . '</div>' . PHP_EOL;
     echo "\t\t" . '<footer class="footer">' . PHP_EOL;
-    echo "\t\t\t" . '<span><audio autoplay src="assets/song/Vanessa.mp3">Your browser does not support the audio element.</audio></span>' . PHP_EOL;
+    echo "\t\t\t" . '<span><audio controls src="assets/song/Vanessa.mp3">Your browser does not support the audio element.</audio></span>' . PHP_EOL;
     echo "\t\t\t" . '<span> 2021 VANESTARRE, Inc.</span>' . PHP_EOL;
     echo "\t\t" . '</footer>' . PHP_EOL;
     echo "\t" . '</div>' . PHP_EOL;

@@ -424,10 +424,6 @@ input#setting_text, input#settings_text {
         font-size: 250%;
     }
 
-    .list_reaction {
-        scale: 2;
-    }
-
     .date_mess {
         margin-top: 5%;
     }
@@ -463,10 +459,6 @@ input#setting_text, input#settings_text {
         flex-direction: column;
     }
 
-    .recherche {
-        scale: 2;
-    }
-
     .visible {
         display: none;
     }
@@ -482,14 +474,6 @@ input#setting_text, input#settings_text {
 
     footer.footer > span {
         font-size: 200%;
-    }
-
-    .param form {
-        scale: 2;
-    }
-
-    .param p {
-        scale: 2;
     }
 
     .div_messages > param {

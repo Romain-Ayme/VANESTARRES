@@ -26,8 +26,8 @@ function sessionPage($role) {
         }
     }
     else {
-        echo "\t\t\t" . '<a href="login.php"><i class="fas fa-sign-in-alt"></i>Se connecter</a>' . PHP_EOL;
-        echo "\t\t\t" . '<a href="register.php"><i class="fa fa-user-plus"></i>S\'inscrire</a>' . PHP_EOL;
+        echo "\t\t\t" . '<a class="home" href="login.php"><i class="fas fa-sign-in-alt"></i>Se connecter</a>' . PHP_EOL;
+        echo "\t\t\t" . '<a class="home" href="register.php"><i class="fa fa-user-plus"></i>S\'inscrire</a>' . PHP_EOL;
     }
 }
 

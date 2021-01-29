@@ -32,8 +32,8 @@ On devait faire un réseau social pour Vanéstarre qui comprenaient:
 - MYSQLI Version 5.0.12-dev
 
 ## Liens utiles
-[GitHub](https://github.com/Romain-Ayme/VANESTARRES)
-[Lien du site](http://romain-ayme.alwaysdata.net/)
+- [GitHub](https://github.com/Romain-Ayme/VANESTARRES)
+- [Lien du site](http://romain-ayme.alwaysdata.net/)
 ## Bases  de données
 Dans le fichier [VANESTARRE.sql](https://github.com/Romain-Ayme/VANESTARRES/blob/main/VANESTARRE.sql "VANESTARRE.sql") vous trouverez la structure de la bases de données
 ### Les tables

@@ -39,8 +39,6 @@ topPage('css.css');     // Fonction de début de page
 
             <div class="param">
                 <form action="mdp_oublie.php" method="post">
-
-                    <i class="fas fa-user"></i>
                     <label for="username">
                         <input type="text" name="email" placeholder="Entrer votre Adresse mail" id="adresse">
                     </label>

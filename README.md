@@ -9,12 +9,18 @@
 - MYSQLI Version 5.0.12-dev
 
 ## Intro
-On devait faire un réseau social pour Vanéstarre qui comprenais : 
+On devait faire un réseau social pour Vanéstarre qui comprenaient: 
 - 50 caractères maximum par message.
 - Pouvoir taguer des messages avec ß.
-- Pouvoir faire une recherche par tag.
-- Pouvoir mètre des interactions sur les messages
-
+- Système de recherche par tag.
+- Système interactions sur les messages.
+- Système de don.
+- Système de pagination paramétrable.
+- Système de gestion des paramètres pour l'admin.
+- Système de mots de passe oublier : nous avons envoyé un mail a l'utilisateur qui souhaite réinitialiser son mot de passe, avec une URL unique, quand l'utilisateur clique sur cette URL, il se retrouve sur une page où il peut insérer son nouveau mot de passe.  
+- Vanéstarre peut modifier et/ou supprimer des messages.
+- Dans la page où se trouvent les informations de l'utilisateur, nous avons affiché le pseudo et l'email. pour le mot de passe, nous ne l'avons pas affiché, en contrepartie, nous avons donné la possibilité de pouvoir modifier son mot de passe, l'utilisateur doit donc mettre son mot de passe actuel et le nouveau mot de passe qu'il veut utiliser.
+- Un admin ne peut pas modifier le mot de passe d'un membre.
 ## Identifiants de connexion utilisateur
 |Login		|Email				|Mot de passe	|Role	|
 |---------------|-------------------------------|---------------|-------|
@@ -79,3 +85,6 @@ Les accès sont uniquement en lecture seule, vous pouvez envoyer un mail à roma
 	romain-ayme_guest
 #### Mot de passe
 	7Z28jLbWe
+	
+## Besoin d'aide
+Si vous ne recevez pas de mail lors de la réinitialisation du mot de c'est de  la faute à alwaysdata (en local ça marche).

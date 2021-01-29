@@ -22,7 +22,7 @@ function sessionPage($role) {
         echo "\t\t\t" . '<a class="home" href="settings.php"><i class="fa fa-cog"></i>Paramètres</a>' . PHP_EOL;
         echo "\t\t\t" . '<a class="home" href="assets/php/logout_Process.php"><i class="fas fa-sign-out-alt"></i>Se déconnecter</a>' . PHP_EOL;
         if ($role == 'SUPER') {
-            echo "\t\t\t" . '<a href="add_Message.php"><i class="fas fa-comment"></i>Ecrire un message</a>' . PHP_EOL;
+            echo "\t\t\t" . '<a class="ecrire_msg" href="add_Message.php"><i class="fas fa-comment"></i>Ecrire un message</a>' . PHP_EOL;
         }
     }
     else {
@@ -316,12 +316,12 @@ function display_membres($dbLink) {
 
             if($is_deleted == 'Y') {
 
-                echo '<input "setting_text" type="text" name="pseudo" value="' . $pseudo . '" disabled/>' . PHP_EOL .
+                echo '<input id="setting_text" type="text" name="pseudo" value="' . $pseudo . '" disabled/>' . PHP_EOL .
                     '<input type="email" name="email" value="' . $email . '" disabled/>' . PHP_EOL .
                     '<input type="submit" name="action_toggle" value="Réactiver"/>' . PHP_EOL;
             }
             else {
-                echo '<input "setting_text" type="text" name="pseudo" value="' . $pseudo . '" required/>' . PHP_EOL .
+                echo '<input id="setting_text" type="text" name="pseudo" value="' . $pseudo . '" required/>' . PHP_EOL .
                     '<input type="email" name="email" value="' . $email . '" required/>' . PHP_EOL .
                     '<input type="submit" name="action_update" value="Modifier"/>' . PHP_EOL .
                     '<input type="submit" name="action_toggle" value="Désactiver"/>' . PHP_EOL;

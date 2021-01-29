@@ -46,11 +46,12 @@ topPage('css.css');     // Fonction de début de page
 
             <div class="param">
                 <form action="nouveau_mdp.php?code=<?php echo $code; ?>" method="post">
-                    <label for="username">
+
+                    <label>
                         <input type="password" name="pass1" placeholder="Entrez votre nouveau mot de passe" id="pass1" required>
                     </label>
 
-                    <label for="password">
+                    <label>
                         <input type="password" name="pass2" placeholder="Confirmez votre nouveau mot de passe" id="pass2" required>
                     </label>
 

@@ -94,7 +94,7 @@ NavPage($role);
         <h1 class="titre">Paramètres</h1>
         <!--            Titre end          -->
 
-        <div class="param">
+        <div class="message">
             <p>Les détails de votre compte sont ci-dessous</p>
 
             <p><b>Pseudo : </b><?php echo $_SESSION['pseudo']?></p>
@@ -119,22 +119,20 @@ NavPage($role);
         <?php display_error('action_change_pwd', $result_pwd) ?>
 
         <?php if($role == 'SUPER') { ?>
-            <div class="param">
+            <div class="message">
                 <p>Paramètres de l'application</p>
 
-                //affiche les parametre du site
                 <?php display_param($dbLink); ?>
 
             </div>
 
             <?php display_error('action_param', $result_param) ?>
 
-            <div class="param">
+            <div class="message">
                 <p>Membres du site (Pseudo, Email)</p>
 
                 <div>
 
-                    //affiche les membres du site
                     <?php display_membres($dbLink); ?>
 
                     <form action="settings.php" method="post">

@@ -138,10 +138,10 @@ NavPage($role);
                     <?php display_membres($dbLink); ?>
 
                     <form action="settings.php" method="post">
-                        <input type="text" name="pseudo" placeholder="Pseudo" required/>
+                        <input id="setting_text" type="text" name="pseudo" placeholder="Pseudo" required/>
                         <input type="email" name="email" placeholder="Email" required/>
                         <input type="password" name="pwd" placeholder="Mot de passe" required/>
-                        <input type="submit" name="action_insert" value="Ajouter"/>
+                        <input id="settings_text" type="submit" name="action_insert" value="Ajouter"/>
                     </form>
 
                 </div>

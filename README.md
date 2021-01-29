@@ -1,11 +1,21 @@
 # VANESTARRES
-# [Lien du site](http://romain-ayme.alwaysdata.net/)
 ## Membre
 - Ayme Romain
 - Charrat Romain
 - Drets Lilian
+## [Lien du site](http://romain-ayme.alwaysdata.net/)
 ## Intro
-Nous devion faire un site pour vanessa
+On devait faire un réseau social pour Vanéstarre.
+
+## Login
+|Login		|Email				|Mot de passe	|
+|---------------|-------------------------------|---------------|
+|Vanéstarre	|vane@star.re			|Kiwi		|
+|romain_ayme	|romain-ayme@alwaysdata.net	|Kiwi		|
+|Lilian		|parmenio.abz@gmail.com		|drets		|
+|Rauren		|rauren@hotmail.fr		|rauren		|
+|marlin		|marlin.casalporte@hotmail.fr	|qtcreator	|
+|Jean-Hugues	|Jean-Hugues@gmail.com		|jesuisunmdp	|
 
 ## Bases  de données
 Dans le fichier [VANESTARRE.sql](https://github.com/Romain-Ayme/VANESTARRES/blob/main/VANESTARRE.sql "VANESTARRE.sql") vous trouverez la structure de la bases de données

@@ -15,13 +15,11 @@ function send_mail($email, $dbLink): string
 
         $subject = 'Mot de passe oublié';
 
-        $message = 'Bonjour. Vous avez effectuer une demande de nouveau mot de passe.\r\n
-                            Veuillez vous rendre au lien suivant: http://romain-ayme.alwaysdata.net/nouveau_mdp.php?code=' . $code . '\r\n
-                            Si vous n\'êtes pas à l\'origine de cette demande, trouvez le coupable.';
+        $message = 'Bonjour. Vous avez effectuer une demande de nouveau mot de passe.
+                    Veuillez vous rendre au lien suivant: http://romain-ayme.alwaysdata.net/nouveau_mdp.php?code=' . $code . '
+                    Si vous n\'êtes pas à l\'origine de cette demande, trouvez le coupable.';
 
-        $headers = 'From: "Nom_de_expediteur"<smtp-romain-ayme.alwaysdata.net>'."\n"; // Expediteur
-
-        mail($email,  $subject, $message, $headers);
+        mail($email,  $subject, $message);
 
         $query = 'UPDATE users SET PSWD = \'' . $code . '\' WHERE EMAIL = \'' . $email . '\'';
         execute_query($dbLink, $query);

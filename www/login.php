@@ -2,7 +2,7 @@
 
 include_once 'assets/php/display_HTML.php';
 include_once 'assets/php/mySQL.php';
-include_once 'assets/php/login_process.php';
+include_once 'assets/php/login_Process.php';
 
 session_start();
 
@@ -23,21 +23,21 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
 
 TopPage('login.css');
 ?>
-        <div class="item login_nav">
-            <div class="swap">
-                <a class="swapitem login select">Login</a>
-                <a class="swapitem login noselect" href="index.php"><i class="fa fa-home"></i></a>
-                <a class="swapitem register noselect" href="register.php">Inscription</a>
-            </div>
-            <form action="login.php" method="post">
-                <label for="email">
-                    <i class="fas fa-user"></i>
-                </label>
-                <input type="email" name="email" placeholder="Email" required>
-                <label for="password">
-                    <i class="fas fa-lock"></i>
-                </label>
-                <input type="password" name="password" placeholder="Mot de passe" required>
+    <div class="item login_nav">
+        <div class="swap">
+            <a class="swapitem login select">Login</a>
+            <a class="swapitem login noselect" href="index.php"><i class="fa fa-home"></i></a>
+            <a class="swapitem register noselect" href="register.php">Inscription</a>
+        </div>
+        <form action="login.php" method="post">
+            <label>
+                <i class="fas fa-user"></i>
+            </label>
+            <input type="email" name="email" placeholder="Email" required>
+            <label>
+                <i class="fas fa-lock"></i>
+            </label>
+            <input type="password" name="password" placeholder="Mot de passe" required>
 
             <?php
             //Si on a voulu se connecter, on execute la fonction de login
@@ -47,15 +47,15 @@ TopPage('login.css');
             }
             ?>
 
-                <a href="mdp_oublie.php" class="mdpoublie">Mot de passe oublié ?</a>
+            <a href="mdp_oublie.php" class="mdpoublie">Mot de passe oublié ?</a>
 
-                <input type="submit" name="action" value="Login">
+            <input type="submit" name="action" value="Login">
 
-            </form>
+        </form>
 
-        </div>
+    </div>
     </body>
-</html>
+    </html>
 
 <?php
 
